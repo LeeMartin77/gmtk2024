@@ -22,7 +22,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: .godot
-          key: ${{ runner.os }}-godot
+          key: ${{ runner.os }}-godot-3.5.3
   
       - name: Get Godot libs
         if: steps.cache-godot.outputs.cache-hit != 'true'
