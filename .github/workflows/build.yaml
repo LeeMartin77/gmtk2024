@@ -1,0 +1,103 @@
+name: Build Project
+on:
+  workflow_dispatch:
+  push:
+    branches: [ "main" ]
+
+concurrency:
+  group: push-main
+  cancel-in-progress: true
+
+env:
+  EXPORT_NAME: LD54
+    
+jobs:
+  build-web:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+            dotnet-version: 8.0.x
+      - name: Cache Godot files
+        id: cache-godot
+        uses: actions/cache@v3
+        with:
+          path: .godot
+          key: ${{ runner.os }}-godot
+  
+      - name: Get Godot libs
+        if: steps.cache-godot.outputs.cache-hit != 'true'
+        run: |
+          mkdir -p .godot
+          mkdir -p .godot/godot
+          mkdir -p .godot/godot-templates
+          wget --output-document=.godot/godot.zip https://github.com/godotengine/godot/releases/download/4.3-stable/Godot_v4.3-stable_mono_linux_x86_64.zip 
+          wget --output-document=.godot/godot-templates.tpz https://github.com/godotengine/godot/releases/download/4.3-stable/Godot_v4.3-stable_mono_export_templates.tpz
+          unzip .godot/godot.zip -d .godot/godot
+          unzip .godot/godot-templates.tpz -d .godot/godot-templates
+
+      - name: Export project
+        run: |
+          mkdir -v -p ~/.local/share/godot/templates/4.3.stable.mono
+          mkdir -v -p dist/windows
+          cp .godot/godot-templates/templates/windows* ~/.local/share/godot/templates/4.3.stable.mono
+          .godot/godot/Godot_v4.3-stable_mono_linux_x86_64/Godot_v4.3-stable_mono_linux.x86_64 --export Windows ./dist/windows/gmtk2024.exe
+#          mkdir -v -p dist/web
+# cp .godot/godot-templates/templates/webassembly_* ~/.local/share/godot/templates/4.3.stable.mono
+# .godot/godot/Godot_v4.3-stable_mono_linux_x86_64/Godot_v4.3-stable_mono_linux.x86_64 --export HTML5 ./dist/web/index.html
+    #      cp -r .godot/godot-templates/templates/bcl ~/.local/share/godot/templates/4.3.stable.mono
+    #      cp -r .godot/godot-templates/templates/data.mono.windows.* ~/.local/share/godot/templates/4.3.stable.mono
+    #   - name: Upload Artifact
+    #     uses: actions/upload-artifact@v1
+    #     with:
+    #       name: web
+    #       path: dist/web
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: windows
+          path: dist/windows
+
+    #   - name: Set up QEMU
+    #     uses: docker/setup-qemu-action@v2
+  
+    #   - name: Set up emulation
+    #     uses: docker/setup-buildx-action@v2
+
+    #   - name: Login to GHCR
+    #     uses: docker/login-action@v2
+    #     with:
+    #       registry: ghcr.io
+    #       username: ${ { github.actor }}
+    #       password: ${ { secrets.GITHUB_TOKEN }}
+  
+    #   - name: Build and push
+    #     uses: docker/build-push-action@v4
+    #     with:
+    #       tags: |
+    #         ghcr.io/leemartin77/ld54:latest
+    #         ghcr.io/leemartin77/ld54:${ { github.sha }}
+    #       context: .
+    #       platforms: linux/arm/v7,linux/arm64/v8,linux/amd64
+    #       push: true
+    #       cache-from: type=gha
+    #       cache-to: type=gha,mode=max
+
+#   update-version:
+#     needs: build-web
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v3
+#         with:
+#           token: ${ { github.token }}
+#       - name: Set new version
+#         run: yq e -i '.spec.template.spec.containers[0].image = "ghcr.io/leemartin77/ld54:${ { github.sha }}"' kustomize/deployment.yml
+#       - name: Commit and Push version
+#         run: |
+#           git config --global user.name 'Lee Martin[Automated]'
+#           git config --global user.email 'leemartin77@users.noreply.github.com'
+#           git commit -am "New LossOfSignal Version"
+#           git push
