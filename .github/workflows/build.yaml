@@ -40,9 +40,9 @@ jobs:
 
       - name: Export project
         run: |
-          mkdir -v -p ~/.local/share/godot/templates/4.3.stable.mono
-          mkdir -v -p dist/windows
-          cp .godot/godot-templates/templates/windows* ~/.local/share/godot/templates/4.3.stable.mono
+          mkdir -v -p ~/.local/share/godot/export_templates/4.3.stable.mono
+          mkdir -v -p dist/windows 
+          cp .godot/godot-templates/templates/windows* ~/.local/share/godot/export_templates/4.3.stable.mono
           .godot/godot/Godot_v4.3-stable_mono_linux_x86_64/Godot_v4.3-stable_mono_linux.x86_64 --headless --export-release Windows ./dist/windows/gmtk2024.exe
 #          mkdir -v -p dist/web
 # cp .godot/godot-templates/templates/webassembly_* ~/.local/share/godot/templates/4.3.stable.mono
