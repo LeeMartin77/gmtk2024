@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: gmtk2024
-          image: ghcr.io/leemartin77/gmtk2024:7bbf10025c93030012a1059cb445ce8f3ce8f7a2
+          image: ghcr.io/leemartin77/gmtk2024:459ca6c3a2a4770b08a75301d407eeed3455499f
           imagePullPolicy: Always
           resources:
             limits:
