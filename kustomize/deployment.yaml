@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: Gmtk2024
+  name: Gmtk2024
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: Gmtk2024
+  template:
+    metadata:
+      labels:
+        app: Gmtk2024
+      namespace: Gmtk2024
+      name: Gmtk2024
+    spec:
+      containers:
+        - name: Gmtk2024
+          image: ghcr.io/leemartin77/gmtk2024:latest
+          imagePullPolicy: Always
+          resources:
+            limits:
+              cpu: 100m
+              memory: 100Mi
+            requests:
+              cpu: 100m
+              memory: 100Mi
+          ports:
+            - name: http
+              containerPort: 80
