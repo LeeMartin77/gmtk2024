@@ -8,6 +8,7 @@ public struct ServerCreationArgs {
     public float ExpensesPerTick;
     public float WorkPerTick;
     public int NumberOfCores;
+    public int NumberOfPorts;
 }
 
 public class Server : Node2D
@@ -26,6 +27,9 @@ public class Server : Node2D
 
     [Export]
     public int NumberOfCores = 2;
+    
+    [Export]
+    public int NumberOfPorts = 2;
 
     private Label _coresLabel;
     private Label _infoLabel;
@@ -38,16 +42,38 @@ public class Server : Node2D
 
     private Area2D[] _ports;
 
+    private PackedScene _portScene;
+
+    private Node2D _portContainer;
+
     public override void _Ready()
     {
         _coresLabel = GetNode<Label>("Cores/Label");
         _infoLabel = GetNode<Label>("Info/Label");
 
+        _portScene = GD.Load<PackedScene>("res://ServerPort.tscn");
+
         _infoLabel.Text = $"Cores: {NumberOfCores}\nWork Speed: {WorkPerTick}\nRunning Cost: {ExpensesPerTick}";
 
         _game = GetNode<Game>("/root/Root");
 
-        _ports = GetNode<Node2D>("Ports").GetChildren().Cast<Area2D>().ToArray();
+        _portContainer = GetNode<Node2D>("Ports");
+
+        var numports = NumberOfPorts;
+        var offsetport = 0;
+        var portwidth = 75;
+        while (numports > 0) {
+            numports -= 1;
+            var port = _portScene.Instance<Area2D>();
+            port.Position = new Vector2(-250 + offsetport * portwidth, 0);
+            GD.Print(port.Position);
+            _portContainer.AddChild(port);
+            offsetport += 1;
+        }
+
+        _ports = _portContainer.GetChildren().Cast<Area2D>().ToArray();
+
+        GD.Print(_ports.Length);
 
         var initialStates = new List<(double, double)>();
         var numcores = NumberOfCores;

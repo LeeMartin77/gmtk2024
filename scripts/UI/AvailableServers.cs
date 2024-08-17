@@ -21,6 +21,7 @@ public class AvailableServers : ItemList
 			ExpensesPerTick = 9.0f,
 			WorkPerTick = 0.4f,
 			NumberOfCores = 2,
+            NumberOfPorts = 2,
         });
     }
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.

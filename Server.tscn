@@ -1,10 +1,7 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://scripts/Server.cs" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
-
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 30, 30 )
 
 [node name="Server" type="Node2D"]
 script = ExtResource( 1 )
@@ -15,20 +12,6 @@ scale = Vector2( 10.625, 1.35938 )
 texture = ExtResource( 2 )
 
 [node name="Ports" type="Node2D" parent="."]
-
-[node name="Port" type="Area2D" parent="Ports"]
-position = Vector2( 400, 250 )
-collision_layer = 0
-collision_mask = 7
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Ports/Port"]
-position = Vector2( -662, -248 )
-shape = SubResource( 1 )
-
-[node name="Icon" type="Sprite" parent="Ports/Port"]
-position = Vector2( -661, -247 )
-scale = Vector2( 0.90625, 0.875 )
-texture = ExtResource( 2 )
 
 [node name="Cores" type="Control" parent="."]
 margin_right = 40.0
