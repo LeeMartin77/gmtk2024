@@ -25,6 +25,7 @@ public class Contract : Control
 
     private Connection _connection;
     private Game _game;
+    private Label _detailsLabel;
     private int _lastTick;
 
     private float _pendingPackets = 1.0f;
@@ -35,6 +36,8 @@ public class Contract : Control
     public async override void _Ready()
     {
         _game = GetNode<Game>("/root/Root");
+        _detailsLabel = GetNode<Label>("ContractDetails");
+
         await ToSignal(GetTree().CreateTimer(0.1f), "timeout");
         try {
 		    _connection = GetNode<Firewall>("/root/Root/Game/Firewall").GetConnectionByContractId(ContractId);
@@ -56,6 +59,8 @@ public class Contract : Control
                 _connection.CreatePacket(PacketTimeoutTime);
             }
         }
+
+        _detailsLabel.Text = $"{PacketsPerTick} packets/tick\n{IncomePerTick} income/tick\nsent: {SentPackets}\nrecv: {ReceivedPackets}";
     }
 
     public void ReceivePacket() {

@@ -52,13 +52,14 @@ margin_top = -21.0
 margin_right = 179.0
 margin_bottom = 19.0
 
-[node name="Label" type="Label" parent="Info"]
-margin_left = 9.0
-margin_top = 8.0
-margin_right = 49.0
-margin_bottom = 22.0
-
 [node name="Panel" type="Panel" parent="Info"]
 margin_left = 5.0
+margin_top = -11.0
 margin_right = 157.0
-margin_bottom = 40.0
+margin_bottom = 52.0
+
+[node name="Label" type="Label" parent="Info"]
+margin_left = 13.0
+margin_top = -4.0
+margin_right = 53.0
+margin_bottom = 10.0

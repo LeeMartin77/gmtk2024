@@ -37,24 +37,19 @@ margin_bottom = 46.0
 rect_pivot_offset = Vector2( -1780, -326 )
 text = "$1000"
 
-[node name="TODO" type="Label" parent="UI"]
-margin_left = 12.0
-margin_top = 140.0
-margin_right = 52.0
-margin_bottom = 154.0
-text = "- Packet Emitter
-- Packet Destination
-- Collide with port at destination
-- Pack moves from emitter to dest
-- packet gets processed by port
-- packet moves back to emitter"
-
 [node name="Contracts" type="Control" parent="UI"]
-margin_right = 40.0
-margin_bottom = 40.0
+anchor_right = 1.0
+margin_left = 262.0
+margin_top = 129.0
+margin_right = 302.0
+margin_bottom = 169.0
 script = ExtResource( 6 )
 
 [node name="Contract" parent="UI/Contracts" instance=ExtResource( 5 )]
+margin_left = 17.0
+margin_top = 10.0
+margin_right = 57.0
+margin_bottom = 50.0
 
 [node name="Game" type="Node2D" parent="."]
 

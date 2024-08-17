@@ -25,7 +25,7 @@ public class Server : Node2D
 
     private Game _game;
 
-    private double[] coreStates;
+    private (double, double)[] coreStates;
 
     private Stack<Packet> pending;
 
@@ -36,15 +36,17 @@ public class Server : Node2D
         _coresLabel = GetNode<Label>("Cores/Label");
         _infoLabel = GetNode<Label>("Info/Label");
 
+        _infoLabel.Text = $"Cores: {NumberOfCores}\nWork Speed: {WorkPerTick}\nRunning Cost: {ExpensesPerTick}";
+
         _game = GetNode<Game>("/root/Root");
 
         _ports = GetNode<Node2D>("Ports").GetChildren().Cast<Area2D>().ToArray();
 
-        var initialStates = new List<double>();
+        var initialStates = new List<(double, double)>();
         var numcores = NumberOfCores;
         while (numcores > 0) {
             numcores -= 1;
-            initialStates.Add(0.0f);
+            initialStates.Add((0.0d, 0.0d));
         }
         coreStates = initialStates.ToArray();
         pending = new Stack<Packet>();
@@ -55,17 +57,17 @@ public class Server : Node2D
     {
         foreach(var (state, i) in coreStates.Select((val, i) => (val, i))) {
             // work off "debt" on core
-            if (state >= 0.0f) {
-                coreStates[i] = state - (WorkPerTick * _game.TickRateSeconds * delta);
+            if (state.Item1 >= 0.0f) {
+                coreStates[i].Item1 = state.Item1 - (WorkPerTick * _game.TickRateSeconds * delta);
             }
         }
         foreach(var (state, i) in coreStates.Select((val, i) => (val, i))) {
-            if (state <= 0.0f) {
+            if (state.Item1 <= 0.0f) {
                 // core is available to work
                 if (pending.Count > 0) {
 
                     var pkt = pending.Pop();
-                    coreStates[i] = pkt.Work;
+                    coreStates[i] = (pkt.Work, pkt.Work);
                     pkt.WorkRate = WorkPerTick;
                 }
             }
@@ -84,5 +86,14 @@ public class Server : Node2D
             }
         }
 
+        _coresLabel.Text = "";
+
+        foreach(var (state, i) in coreStates.Select((val, i) => (val, i))) {
+            if (state.Item1 <= 0.0f) {
+                _coresLabel.Text += $"Core {i}: idle\n";
+            } else {
+                _coresLabel.Text += $"Core {i}: {((state.Item1 / state.Item2) * 100).ToString("0")}%\n";
+            }
+        }
     }
 }
