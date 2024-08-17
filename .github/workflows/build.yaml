@@ -97,5 +97,5 @@ jobs:
         run: |
           git config --global user.name 'Lee Martin[Automated]'
           git config --global user.email 'leemartin77@users.noreply.github.com'
-          git commit -am "New Gmtk2024 Version"
+          git commit -am "chore: New Version on Manifest"
           git push

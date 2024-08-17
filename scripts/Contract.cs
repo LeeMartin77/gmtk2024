@@ -1,6 +1,13 @@
 using Godot;
 using System;
 
+public struct ContractCreationArgs {
+    public float IncomePerTick;
+    public float PacketsPerTick;
+    public float PacketTimeoutTime;
+    public string ContractId;
+}
+
 public class Contract : Control
 {
     // Declare member variables here. Examples:
@@ -53,7 +60,7 @@ public class Contract : Control
         if (_lastTick != _game.TickNumber) {
             _lastTick = _game.TickNumber;
             _pendingPackets += PacketsPerTick;
-            while (_pendingPackets >= 1.0f) {
+            while (_pendingPackets >= 1.0f && _connection != null) {
                 _pendingPackets -= 1.0f;
                 SentPackets += 1;
                 _connection.CreatePacket(PacketTimeoutTime);

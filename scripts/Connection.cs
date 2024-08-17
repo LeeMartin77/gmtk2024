@@ -1,6 +1,10 @@
 using Godot;
 using System;
 
+public struct ConnectionCreationArgs {
+    public string ContractId;
+}
+
 public class Connection : Node2D
 {
     // Declare member variables here. Examples:

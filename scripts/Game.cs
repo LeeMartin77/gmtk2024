@@ -25,13 +25,32 @@ public class Game : Node2D
 
 	public Contracts Contracts;
 
+	public Firewall Firewall;
+
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
 		// Get Contracts
     	Rack = GetNode<Rack>("/root/Root/Game/Rack");
 		Contracts = GetNode<Contracts>("/root/Root/UI/Contracts");
+		Firewall = GetNode<Firewall>("/root/Root/Game/Firewall");
     }
+
+	public void AcceptContract(ContractCreationArgs cca) {
+		Contracts.AddContract(cca);
+		Firewall.AddConnection(new ConnectionCreationArgs{
+			ContractId = cca.ContractId
+		});
+	}
+
+// new ServerCreationArgs{
+// 			ExpensesPerTick = 9.0f,
+// 			WorkPerTick = 0.4f,
+// 			NumberOfCores = 2,
+// 		}
+	public void BuyServer(ServerCreationArgs sca) {
+		Rack.AddServer(sca);
+	}
 
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(float delta)

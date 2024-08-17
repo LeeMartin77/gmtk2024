@@ -9,14 +9,21 @@ public class Rack : Node2D
     // private string b = "text";
 
     // Called when the node enters the scene tree for the first time.
+    private PackedScene _serverScene;
     public override void _Ready()
     {
         
+        _serverScene = GD.Load<PackedScene>("res://Server.tscn");
     }
 
     public Server[] GetServers() {
         var children = GetChildren();
         return children.Cast<Server>().ToArray();
+    }
+
+
+    public void AddServer(ServerCreationArgs args) {
+
     }
 
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.
