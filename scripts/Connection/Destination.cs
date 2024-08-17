@@ -17,16 +17,21 @@ public class Destination : KinematicBody2D
 
     public void _on_Destination_input_event(Node _, InputEvent evnt, int shapeidx) {
         if  (evnt is InputEventMouseButton && evnt.IsPressed() && !_attachedToMouse) {
-            GD.Print(evnt);
             _attachedToMouse = true;
         }
     }
+
+    public void _on_Area2D_body_entered(Node potentialPacket) {
+        if (potentialPacket.GetType()  == typeof(Packet)) {
+            (potentialPacket as Packet).Processable = true;
+        }
+    }
+
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(float delta)
     {
         
         if (_attachedToMouse) {
-            GD.Print("shouldmove");
             Position = (GetParent() as Node2D).ToLocal(GetGlobalMousePosition());
             var t = Position;
 
@@ -37,11 +42,10 @@ public class Destination : KinematicBody2D
             Position = t;
             if (Input.IsActionJustReleased("click"))
             {
-                GD.Print("detatching");
                 _attachedToMouse = false;
             }
         }
-        if (_attachedToMouse) {
-        }
+        
+        
     }
 }

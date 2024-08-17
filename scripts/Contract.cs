@@ -18,7 +18,7 @@ public class Contract : Control
     public float PacketsPerTick = 0.2f;
 
     [Export]
-    public float PacketTimeoutTime = 10f;
+    public float PacketTimeoutTime = 20f;
 
     [Export]
     public string ContractId = "a832c168-a98f-475d-825b-9f5803dfa3de";
@@ -29,8 +29,8 @@ public class Contract : Control
 
     private float _pendingPackets = 0.0f;
 
-    private int _sentPackets = 0;
-    private int _receivedPackets = 0;
+    public int SentPackets = 0;
+    public int ReceivedPackets = 0;
 
     public async override void _Ready()
     {
@@ -52,13 +52,13 @@ public class Contract : Control
             _pendingPackets += PacketsPerTick;
             while (_pendingPackets >= 1.0f) {
                 _pendingPackets -= 1.0f;
-                _sentPackets += 1;
+                SentPackets += 1;
                 _connection.CreatePacket(PacketTimeoutTime);
             }
         }
     }
 
     public void ReceivePacket() {
-        _receivedPackets += 1;
+        ReceivedPackets += 1;
     }
 }

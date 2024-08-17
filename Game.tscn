@@ -62,6 +62,7 @@ script = ExtResource( 6 )
 script = ExtResource( 8 )
 
 [node name="Server" parent="Game/Rack" instance=ExtResource( 4 )]
+position = Vector2( 887, 173 )
 
 [node name="Firewall" type="Node2D" parent="Game"]
 script = ExtResource( 7 )
