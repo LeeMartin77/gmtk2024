@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Linq;
 
 public class Firewall : Node2D
 {
@@ -11,6 +12,17 @@ public class Firewall : Node2D
     public override void _Ready()
     {
         
+    }
+
+
+    public Connection[] GetConnections() {
+        var children = GetChildren();
+        return children.Cast<Connection>().ToArray();
+    }
+
+    // will throw if contract does not exist
+    public Connection GetConnectionByContractId(string id) {
+        return GetConnections().First((x) => x.ContractId == id);
     }
 
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.

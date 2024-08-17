@@ -1,27 +1,19 @@
 using Godot;
 using System;
-using System.Linq;
 
-public class Contracts : Control
+public class Packet : RigidBody2D
 {
     // Declare member variables here. Examples:
     // private int a = 2;
     // private string b = "text";
 
+    [Export]
+    public float TimeoutTime = 10.0f;
+
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
         
-    }
-
-    public Contract[] GetContracts() {
-        var children = GetChildren();
-        return children.Cast<Contract>().ToArray();
-    }
-
-    // will throw if contract does not exist
-    public Contract GetContractById(string id) {
-        return GetContracts().First((x) => x.ContractId == id);
     }
 
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.

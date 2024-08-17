@@ -11,6 +11,8 @@ public class Game : Node2D
   	[Export]
 	public double TickRateSeconds = 1.0d;
 
+	public int TickNumber = 0;
+
 	private double _timeSinceLastTick = 0.0d;
 
 	public float IncomePerTick = 0.0f;
@@ -19,16 +21,16 @@ public class Game : Node2D
   	[Export]
 	public float Account = 10_000.0f;
 
-	private Rack _rack;
+	public Rack Rack;
 
-	private Contracts _contracts;
+	public Contracts Contracts;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
 		// Get Contracts
-    	_rack = GetNode<Rack>("/root/Root/Game/Rack");
-		_contracts = GetNode<Contracts>("/root/Root/UI/Contracts");
+    	Rack = GetNode<Rack>("/root/Root/Game/Rack");
+		Contracts = GetNode<Contracts>("/root/Root/UI/Contracts");
     }
 
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -37,15 +39,16 @@ public class Game : Node2D
 		_timeSinceLastTick += delta;
 		if (_timeSinceLastTick > TickRateSeconds) {
 			// total up servers and contracts
-			ExpensesPerTick = _rack.GetServers().Aggregate(0.0f, (acc, nxt) => {
+			ExpensesPerTick = Rack.GetServers().Aggregate(0.0f, (acc, nxt) => {
 				return acc + nxt.ExpensesPerTick;
 			});
-			IncomePerTick = _contracts.GetContracts().Aggregate(0.0f, (acc, nxt) => {
+			IncomePerTick = Contracts.GetContracts().Aggregate(0.0f, (acc, nxt) => {
 				return acc + nxt.IncomePerTick;
 			});
 			_timeSinceLastTick -= TickRateSeconds;
 			Account += IncomePerTick;
 			Account -= ExpensesPerTick;
+			TickNumber += 1;
 		}
 	}
 }
