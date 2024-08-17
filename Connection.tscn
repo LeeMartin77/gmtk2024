@@ -24,7 +24,7 @@ scale = Vector2( 0.296875, 0.296875 )
 texture = ExtResource( 2 )
 
 [node name="Destination" type="KinematicBody2D" parent="."]
-position = Vector2( 0, 300 )
+position = Vector2( 60, 300 )
 collision_layer = 2147483648
 collision_mask = 0
 input_pickable = true
@@ -45,6 +45,8 @@ collision_mask = 15
 shape = SubResource( 3 )
 
 [node name="PacketsIn" type="Node2D" parent="."]
+
+[node name="Cable" type="Node2D" parent="."]
 
 [connection signal="body_entered" from="Source" to="." method="_on_Source_body_entered"]
 [connection signal="input_event" from="Destination" to="Destination" method="_on_Destination_input_event"]

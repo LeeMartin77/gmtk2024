@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://icon.png" type="Texture" id=1]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 3.0
+
+[node name="Link" type="RigidBody2D"]
+collision_layer = 16777216
+collision_mask = 16777216
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 15.5 )
+shape = SubResource( 1 )
+
+[node name="Icon" type="Sprite" parent="."]
+position = Vector2( 0, 15.5 )
+scale = Vector2( 0.09375, 0.578125 )
+texture = ExtResource( 1 )
