@@ -4,9 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 
 public struct ServerCreationArgs {
+    public float Cost;
     public float ExpensesPerTick;
     public float WorkPerTick;
-    public float NumberOfCores;
+    public int NumberOfCores;
 }
 
 public class Server : Node2D

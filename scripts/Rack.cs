@@ -23,7 +23,14 @@ public class Rack : Node2D
 
 
     public void AddServer(ServerCreationArgs args) {
-
+        var nc = _serverScene.Instance() as Server;
+        nc.ExpensesPerTick = args.ExpensesPerTick;
+        nc.WorkPerTick = args.WorkPerTick;
+        nc.NumberOfCores = args.NumberOfCores;
+        var serverHeight = 100f;
+        var yOffset = serverHeight * GetServers().Length;
+        nc.Position = new Vector2(0, yOffset);
+        AddChild(nc);
     }
 
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.

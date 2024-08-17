@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class AvailableContracts : ItemList
+public class AvailableServers : ItemList
 {
     // Declare member variables here. Examples:
     // private int a = 2;
@@ -15,18 +15,14 @@ public class AvailableContracts : ItemList
         _game = GetNode<Game>("/root/Root");
     }
 
-    public void _on_AvailableContracts_item_activated(int index) {
-        //var item = GetItemText(index);
-        var cca = new ContractCreationArgs{
-			IncomePerTick = 10.0f,
-			PacketsPerTick = 0.4f,
-			PacketTimeoutTime = 20f,
-			ContractId = Guid.NewGuid().ToString(),
-		};
-
-        _game.AcceptContract(cca);
+    public void _on_AvailableServers_item_activated(int index) {
+        _game.BuyServer(new ServerCreationArgs{
+            Cost = 1000.0f,
+			ExpensesPerTick = 9.0f,
+			WorkPerTick = 0.4f,
+			NumberOfCores = 2,
+        });
     }
-
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.
 //  public override void _Process(float delta)
 //  {

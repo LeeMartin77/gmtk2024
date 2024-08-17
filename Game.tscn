@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scripts/Game.cs" type="Script" id=1]
 [ext_resource path="res://scripts/UI.cs" type="Script" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://scripts/Firewall.cs" type="Script" id=7]
 [ext_resource path="res://scripts/Rack.cs" type="Script" id=8]
 [ext_resource path="res://scripts/UI/AvailableContracts.cs" type="Script" id=9]
+[ext_resource path="res://scripts/UI/AvailableServers.cs" type="Script" id=10]
 
 [node name="Root" type="Node2D"]
 script = ExtResource( 1 )
@@ -53,19 +54,27 @@ rect_pivot_offset = Vector2( -1096, -200 )
 ContractId = "Contract1"
 
 [node name="AvailableContracts" type="ItemList" parent="UI"]
-margin_top = 260.0
+margin_top = 357.0
 margin_right = 239.0
-margin_bottom = 624.0
+margin_bottom = 443.0
+rect_pivot_offset = Vector2( 148, 81 )
 items = [ "Contract One", null, false, "Contract Two", null, false ]
 script = ExtResource( 9 )
+
+[node name="AvailableServers" type="ItemList" parent="UI"]
+margin_top = 462.0
+margin_right = 239.0
+margin_bottom = 557.0
+items = [ "Server One", null, false, "Server Two", null, false ]
+script = ExtResource( 10 )
 
 [node name="Game" type="Node2D" parent="."]
 
 [node name="Rack" type="Node2D" parent="Game"]
+position = Vector2( 902, 78 )
 script = ExtResource( 8 )
 
 [node name="Server" parent="Game/Rack" instance=ExtResource( 4 )]
-position = Vector2( 887, 173 )
 
 [node name="Firewall" type="Node2D" parent="Game"]
 script = ExtResource( 7 )
@@ -74,4 +83,5 @@ script = ExtResource( 7 )
 position = Vector2( 330, 0 )
 ContractId = "Contract1"
 
-[connection signal="item_selected" from="UI/AvailableContracts" to="UI/AvailableContracts" method="_on_AvailableContracts_item_selected"]
+[connection signal="item_activated" from="UI/AvailableContracts" to="UI/AvailableContracts" method="_on_AvailableContracts_item_activated"]
+[connection signal="item_activated" from="UI/AvailableServers" to="UI/AvailableServers" method="_on_AvailableServers_item_activated"]

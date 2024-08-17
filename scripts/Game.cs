@@ -43,13 +43,11 @@ public class Game : Node2D
 		});
 	}
 
-// new ServerCreationArgs{
-// 			ExpensesPerTick = 9.0f,
-// 			WorkPerTick = 0.4f,
-// 			NumberOfCores = 2,
-// 		}
 	public void BuyServer(ServerCreationArgs sca) {
-		Rack.AddServer(sca);
+		if (Account >= sca.Cost) {
+			Account -= sca.Cost;
+			Rack.AddServer(sca);
+		}
 	}
 
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.
