@@ -40,7 +40,7 @@ public class Server : Node2D
 
     private Stack<Packet> pending;
 
-    private Area2D[] _ports;
+    private ServerPort[] _ports;
 
     private PackedScene _portScene;
 
@@ -66,12 +66,13 @@ public class Server : Node2D
             numports -= 1;
             var port = _portScene.Instance<Area2D>();
             port.Position = new Vector2(-250 + offsetport * portwidth, 0);
-            GD.Print(port.Position);
+            port.Connect("body_entered", port, "_PortEntered");
+            port.Connect("body_exited", port, "_PortLeft");
             _portContainer.AddChild(port);
             offsetport += 1;
         }
 
-        _ports = _portContainer.GetChildren().Cast<Area2D>().ToArray();
+        _ports = _portContainer.GetChildren().Cast<ServerPort>().ToArray();
 
         GD.Print(_ports.Length);
 
@@ -115,6 +116,11 @@ public class Server : Node2D
                     if ((overlap as Packet).Processable && (overlap as Packet).WorkRate <= 0.0f){
                         pending.Push(overlap as Packet);
                     }
+                } else if (overlap != port.ConnectedTo && overlap.GetType()  == typeof(Destination) && !(overlap as Destination).AttachedToMouse) {
+                    // "eject"
+                    var thispos = (overlap as Destination).Position;
+                    thispos.y += 50;
+                    (overlap as Destination).Position = thispos;
                 }
             }
         }

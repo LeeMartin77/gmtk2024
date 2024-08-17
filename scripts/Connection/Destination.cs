@@ -7,7 +7,10 @@ public class Destination : KinematicBody2D
     // private int a = 2;
     // private string b = "text";
 
-    private bool _attachedToMouse = false;
+    public bool AttachedToMouse = false;
+
+    public ServerPort ConnectedTo;
+
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -16,8 +19,8 @@ public class Destination : KinematicBody2D
     }
 
     public void _on_Destination_input_event(Node _, InputEvent evnt, int shapeidx) {
-        if  (evnt is InputEventMouseButton && evnt.IsPressed() && !_attachedToMouse) {
-            _attachedToMouse = true;
+        if  (evnt is InputEventMouseButton && evnt.IsPressed() && !AttachedToMouse) {
+            AttachedToMouse = true;
         }
     }
 
@@ -31,7 +34,7 @@ public class Destination : KinematicBody2D
     public override void _Process(float delta)
     {
         
-        if (_attachedToMouse) {
+        if (AttachedToMouse) {
             Position = (GetParent() as Node2D).ToLocal(GetGlobalMousePosition());
             var t = Position;
 
@@ -42,7 +45,11 @@ public class Destination : KinematicBody2D
             Position = t;
             if (Input.IsActionJustReleased("click"))
             {
-                _attachedToMouse = false;
+                AttachedToMouse = false;
+                if (ConnectedTo != null) {
+                    // "snap to"
+                    GlobalPosition = ConnectedTo.GlobalPosition;
+                }
             }
         }
         
