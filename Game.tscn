@@ -50,6 +50,29 @@ margin_left = 17.0
 margin_top = 10.0
 margin_right = 57.0
 margin_bottom = 50.0
+rect_pivot_offset = Vector2( -1096, -200 )
+ContractId = "Contract1"
+
+[node name="Contract2" parent="UI/Contracts" instance=ExtResource( 5 )]
+margin_left = 34.0
+margin_top = 126.0
+margin_right = 74.0
+margin_bottom = 166.0
+rect_pivot_offset = Vector2( -1096, -200 )
+IncomePerTick = 200.0
+PacketsPerTick = 0.5
+PacketTimeoutTime = 40.0
+ContractId = "Contract2"
+
+[node name="Contract3" parent="UI/Contracts" instance=ExtResource( 5 )]
+margin_left = 68.0
+margin_top = 219.0
+margin_right = 108.0
+margin_bottom = 259.0
+rect_pivot_offset = Vector2( -1096, -200 )
+IncomePerTick = 500.0
+PacketsPerTick = 0.8
+ContractId = "Contract3"
 
 [node name="Game" type="Node2D" parent="."]
 
@@ -59,7 +82,23 @@ script = ExtResource( 8 )
 [node name="Server" parent="Game/Rack" instance=ExtResource( 4 )]
 position = Vector2( 887, 173 )
 
+[node name="Server2" parent="Game/Rack" instance=ExtResource( 4 )]
+position = Vector2( 888, 321 )
+ExpensesPerTick = 150.0
+WorkPerTick = 0.8
+NumberOfCores = 3
+
 [node name="Firewall" type="Node2D" parent="Game"]
 script = ExtResource( 7 )
 
 [node name="Connection" parent="Game/Firewall" instance=ExtResource( 3 )]
+position = Vector2( 330, 0 )
+ContractId = "Contract1"
+
+[node name="Connection2" parent="Game/Firewall" instance=ExtResource( 3 )]
+position = Vector2( 392, 0 )
+ContractId = "Contract2"
+
+[node name="Connection3" parent="Game/Firewall" instance=ExtResource( 3 )]
+position = Vector2( 463, 0 )
+ContractId = "Contract3"
