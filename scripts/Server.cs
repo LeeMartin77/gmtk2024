@@ -63,6 +63,7 @@ public class Server : Node2D
             if (state <= 0.0f) {
                 // core is available to work
                 if (pending.Count > 0) {
+
                     var pkt = pending.Pop();
                     coreStates[i] = pkt.Work;
                     pkt.WorkRate = WorkPerTick;
@@ -73,6 +74,7 @@ public class Server : Node2D
         foreach(var port in _ports) {
             var overlapping = port.GetOverlappingBodies();
             // lolfuk
+
             foreach(var overlap in overlapping) {
                 if (overlap.GetType()  == typeof(Packet)) {
                     if ((overlap as Packet).Processable && (overlap as Packet).WorkRate <= 0.0f){

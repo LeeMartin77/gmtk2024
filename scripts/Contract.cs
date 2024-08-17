@@ -27,7 +27,7 @@ public class Contract : Control
     private Game _game;
     private int _lastTick;
 
-    private float _pendingPackets = 0.0f;
+    private float _pendingPackets = 1.0f;
 
     public int SentPackets = 0;
     public int ReceivedPackets = 0;

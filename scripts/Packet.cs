@@ -13,7 +13,7 @@ public class Packet : RigidBody2D
     [Export]
     public double Work = 3.0f;
 
-    public float MovementSpeed = 75.0f;
+    public float MovementSpeed = 150.0f;
 
     public bool Processable = false;
     public double WorkRate = 0.0f;
@@ -60,7 +60,7 @@ public class Packet : RigidBody2D
 
         if (Position.DistanceTo(_target.Position) > 0.0f)
         {        
-            LinearVelocity = Position.DirectionTo(_target.Position) * MovementSpeed;
+            LinearVelocity = Position.DirectionTo(_target.Position) * MovementSpeed * ((float)_game.TickRateSeconds);
         } else {
             LinearVelocity = new Vector2();
         }
