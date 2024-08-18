@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://scripts/Game.cs" type="Script" id=1]
 [ext_resource path="res://scripts/UI.cs" type="Script" id=2]
@@ -10,10 +10,11 @@
 [ext_resource path="res://scripts/Rack.cs" type="Script" id=8]
 [ext_resource path="res://scripts/UI/AvailableContracts.cs" type="Script" id=9]
 [ext_resource path="res://scripts/UI/AvailableServers.cs" type="Script" id=10]
-[ext_resource path="res://assets/crenelations.png" type="Texture" id=11]
+[ext_resource path="res://GUI.tscn" type="PackedScene" id=11]
 [ext_resource path="res://scripts/Misc/RackRowBackdrop.cs" type="Script" id=12]
 [ext_resource path="res://assets/rackrow.png" type="Texture" id=13]
 [ext_resource path="res://assets/racktop.png" type="Texture" id=14]
+[ext_resource path="res://assets/crenelations.png" type="Texture" id=15]
 
 [node name="Root" type="Node2D"]
 script = ExtResource( 1 )
@@ -74,45 +75,41 @@ script = ExtResource( 10 )
 
 [node name="Game" type="Node2D" parent="."]
 
-[node name="Camera2D" type="Camera2D" parent="Game"]
-anchor_mode = 0
-current = true
-
 [node name="Backdrop" type="Node2D" parent="Game"]
 
 [node name="Top" type="Node2D" parent="Game/Backdrop"]
 
 [node name="Crenelations" type="Sprite" parent="Game/Backdrop/Top"]
 position = Vector2( 1215, 27 )
-texture = ExtResource( 11 )
+texture = ExtResource( 15 )
 
 [node name="Crenelations2" type="Sprite" parent="Game/Backdrop/Top"]
 position = Vector2( 1084, 27 )
-texture = ExtResource( 11 )
+texture = ExtResource( 15 )
 
 [node name="Crenelations4" type="Sprite" parent="Game/Backdrop/Top"]
 position = Vector2( 952.5, 27 )
-texture = ExtResource( 11 )
+texture = ExtResource( 15 )
 
 [node name="Crenelations3" type="Sprite" parent="Game/Backdrop/Top"]
 position = Vector2( 821, 27 )
-texture = ExtResource( 11 )
+texture = ExtResource( 15 )
 
 [node name="Crenelations5" type="Sprite" parent="Game/Backdrop/Top"]
 position = Vector2( 690.5, 27 )
-texture = ExtResource( 11 )
+texture = ExtResource( 15 )
 
 [node name="Crenelations6" type="Sprite" parent="Game/Backdrop/Top"]
 position = Vector2( 559.5, 26.5 )
-texture = ExtResource( 11 )
+texture = ExtResource( 15 )
 
 [node name="Crenelations7" type="Sprite" parent="Game/Backdrop/Top"]
 position = Vector2( 428, 26.5 )
-texture = ExtResource( 11 )
+texture = ExtResource( 15 )
 
 [node name="Crenelations8" type="Sprite" parent="Game/Backdrop/Top"]
 position = Vector2( 296.5, 26.5 )
-texture = ExtResource( 11 )
+texture = ExtResource( 15 )
 
 [node name="Rack" type="Node2D" parent="Game/Backdrop"]
 
@@ -141,6 +138,14 @@ script = ExtResource( 7 )
 [node name="Connection" parent="Game/Firewall" instance=ExtResource( 3 )]
 position = Vector2( 647, 0 )
 ContractId = "Contract1"
+
+[node name="Camera2D" type="Camera2D" parent="Game"]
+anchor_mode = 0
+current = true
+
+[node name="GUI" parent="Game/Camera2D" instance=ExtResource( 11 )]
+margin_right = 412.0
+margin_bottom = 720.0
 
 [connection signal="item_activated" from="UI/AvailableContracts" to="UI/AvailableContracts" method="_on_AvailableContracts_item_activated"]
 [connection signal="item_activated" from="UI/AvailableServers" to="UI/AvailableServers" method="_on_AvailableServers_item_activated"]

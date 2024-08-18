@@ -4,9 +4,9 @@ using System.Linq;
 
 public class Game : Node2D
 {
-    // Declare member variables here. Examples:
-    // private int a = 2;
-    // private string b = "text";
+	// Declare member variables here. Examples:
+	// private int a = 2;
+	// private string b = "text";
 
   	[Export]
 	public double TickRateSeconds = 1.0d;
@@ -29,15 +29,15 @@ public class Game : Node2D
 
 	private Camera2D _camera;
 
-    // Called when the node enters the scene tree for the first time.
-    public override void _Ready()
-    {
+	// Called when the node enters the scene tree for the first time.
+	public override void _Ready()
+	{
 		// Get Contracts
-    	_camera = GetNode<Camera2D>("/root/Root/Game/Camera2D");
-    	Rack = GetNode<Rack>("/root/Root/Game/Rack");
+		_camera = GetNode<Camera2D>("/root/Root/Game/Camera2D");
+		Rack = GetNode<Rack>("/root/Root/Game/Rack");
 		Contracts = GetNode<Contracts>("/root/Root/UI/Contracts");
 		Firewall = GetNode<Firewall>("/root/Root/Game/Firewall");
-    }
+	}
 
 	public void AcceptContract(ContractCreationArgs cca) {
 		Contracts.AddContract(cca);
@@ -74,7 +74,7 @@ public class Game : Node2D
 
 	private float _scrollSpeed = 10f;
 	public override void _Input(InputEvent inputEvent)
-    {
+	{
 		if (inputEvent.GetType() == typeof(InputEventPanGesture)) {
 			var dlta = (inputEvent as InputEventPanGesture).Delta;
 			_scrollBy((dlta.y * -1) * _scrollSpeed);
@@ -88,7 +88,7 @@ public class Game : Node2D
 			GD.Print("scroll_down occurred!");
 			_scrollBy(+1 * _scrollSpeed);
 		}
-    }
+	}
 
 	private float _cameraLimit = 1200f;
 	private void _scrollBy(float amount) {
