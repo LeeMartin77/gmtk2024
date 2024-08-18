@@ -51,4 +51,3 @@ shape = SubResource( 3 )
 
 [connection signal="body_entered" from="Source" to="." method="_on_Source_body_entered"]
 [connection signal="input_event" from="Destination" to="Destination" method="_on_Destination_input_event"]
-[connection signal="body_entered" from="Destination/Area2D" to="Destination" method="_on_Area2D_body_entered"]

@@ -55,6 +55,10 @@ public class Packet : RigidBody2D
     {
         TimeoutTicks -= _game.TickRateSeconds * delta;
 
+        if (_jointIndex + 1 == _jointLength && !Processable) {
+            Processable = true;
+        }
+
         if (TimeoutTicks <= 0) {
             QueueFree();
         }

@@ -24,12 +24,6 @@ public class Destination : KinematicBody2D
         }
     }
 
-    public void _on_Area2D_body_entered(Node potentialPacket) {
-        if (potentialPacket.GetType()  == typeof(Packet)) {
-            (potentialPacket as Packet).Processable = true;
-        }
-    }
-
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(float delta)
     {
