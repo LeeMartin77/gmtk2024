@@ -1,5 +1,7 @@
 using Godot;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 public class Packet : RigidBody2D
 {
@@ -13,13 +15,18 @@ public class Packet : RigidBody2D
     [Export]
     public double Work = 3.0f;
 
-    public float MovementSpeed = 150.0f;
+    public float MovementSpeed = 100.0f;
 
     public bool Processable = false;
     public double WorkRate = 0.0f;
 
     public Node2D Destination;
     public Node2D Source;
+
+    private List<Node2D> _joints;
+    private int _jointIndex = 0;
+    private int _jointLength;
+    private int _direction = 1;
 
     private Node2D _target;
 
@@ -30,7 +37,16 @@ public class Packet : RigidBody2D
     {
         Destination = GetParent().GetNode<Node2D>("../Destination");
         Source = GetParent().GetNode<Node2D>("../Source");
-        _target = Destination;
+
+        _joints = new List<Node2D>
+        {
+            Source
+        };
+        _joints.AddRange(GetParent().GetNode("../Cable").GetChildren().OfType<RigidBody2D>().ToArray());
+            
+        _jointLength = _joints.Count();
+        _target = _joints[_jointIndex];
+
         _game = GetNode<Game>("/root/Root");
     }
 
@@ -48,8 +64,8 @@ public class Packet : RigidBody2D
         }
 
         if (Work <= 0.0f) {
-            // done work, return to source
-            _target = Source;
+            // done work, return up the cable
+            _direction = -1;
         }
 
         base._Process(delta);
@@ -57,11 +73,20 @@ public class Packet : RigidBody2D
 
     public override void _IntegrateForces(Physics2DDirectBodyState state)
     {
+        var additionalVelocity = new Vector2();
 
-        if (Position.DistanceTo(_target.Position) > 0.0f)
-        {        
-            LinearVelocity = Position.DirectionTo(_target.Position) * MovementSpeed * ((float)_game.TickRateSeconds);
+        if (_target.GetType() == typeof(RigidBody2D)) {
+            additionalVelocity = (_target as RigidBody2D).LinearVelocity;
+        }
+        if (Position.DistanceTo(_target.Position) > 1.0f)
+        {
+            LinearVelocity = Position.DirectionTo(_target.Position) * MovementSpeed * ((float)_game.TickRateSeconds) + additionalVelocity;
+        } else if (_jointIndex + _direction > 0 && _jointIndex + _direction < _jointLength) {
+            _jointIndex += _direction;
+            _target = _joints[_jointIndex];
+            LinearVelocity = Position.DirectionTo(_target.Position) * MovementSpeed * ((float)_game.TickRateSeconds) + additionalVelocity;
         } else {
+
             LinearVelocity = new Vector2();
         }
         base._IntegrateForces(state);
