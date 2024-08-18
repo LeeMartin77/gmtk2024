@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://icon.png" type="Texture" id=1]
+[ext_resource path="res://assets/cablelink.png" type="Texture" id=1]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 3.0
@@ -13,7 +13,6 @@ collision_mask = 16777216
 position = Vector2( 0, 15.5 )
 shape = SubResource( 1 )
 
-[node name="Icon" type="Sprite" parent="."]
-position = Vector2( 0, 15.5 )
-scale = Vector2( 0.09375, 0.578125 )
+[node name="Cablelink" type="Sprite" parent="."]
+position = Vector2( 0, 16 )
 texture = ExtResource( 1 )
