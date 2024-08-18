@@ -27,7 +27,7 @@ public class Rack : Node2D
         nc.ExpensesPerTick = args.ExpensesPerTick;
         nc.WorkPerTick = args.WorkPerTick;
         nc.NumberOfCores = args.NumberOfCores;
-        var serverHeight = 100f;
+        var serverHeight = 200f;
         var yOffset = serverHeight * GetServers().Length;
         nc.Position = new Vector2(0, yOffset);
         AddChild(nc);

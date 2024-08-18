@@ -71,16 +71,17 @@ script = ExtResource( 10 )
 [node name="Game" type="Node2D" parent="."]
 
 [node name="Rack" type="Node2D" parent="Game"]
-position = Vector2( 902, 78 )
+position = Vector2( 850, 160 )
 script = ExtResource( 8 )
 
 [node name="Server" parent="Game/Rack" instance=ExtResource( 4 )]
+NumberOfPorts = 6
 
 [node name="Firewall" type="Node2D" parent="Game"]
 script = ExtResource( 7 )
 
 [node name="Connection" parent="Game/Firewall" instance=ExtResource( 3 )]
-position = Vector2( 330, 0 )
+position = Vector2( 647, -36 )
 ContractId = "Contract1"
 
 [connection signal="item_activated" from="UI/AvailableContracts" to="UI/AvailableContracts" method="_on_AvailableContracts_item_activated"]

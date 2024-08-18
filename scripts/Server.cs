@@ -53,7 +53,7 @@ public class Server : Node2D
 
         _portScene = GD.Load<PackedScene>("res://ServerPort.tscn");
 
-        _infoLabel.Text = $"Cores: {NumberOfCores}\nWork Speed: {WorkPerTick}\nRunning Cost: {ExpensesPerTick}";
+        _infoLabel.Text = $"CORE: {NumberOfCores}\nRATE: {WorkPerTick*60}RPM\nCOST: £{ExpensesPerTick*60}PM";
 
         _game = GetNode<Game>("/root/Root");
 
@@ -61,15 +61,20 @@ public class Server : Node2D
 
         var numports = NumberOfPorts;
         var offsetport = 0;
-        var portwidth = 75;
+        var offsetporty = 0;
+        var portwidth = 50;
         while (numports > 0) {
             numports -= 1;
             var port = _portScene.Instance<Area2D>();
-            port.Position = new Vector2(-250 + offsetport * portwidth, 0);
+            port.Position = new Vector2(-290 + offsetport * portwidth, -26 + offsetporty * 50);
             port.Connect("body_entered", port, "_PortEntered");
             port.Connect("body_exited", port, "_PortLeft");
             _portContainer.AddChild(port);
             offsetport += 1;
+            if (offsetport > 2) {
+                offsetport = 0;
+                offsetporty +=1;
+            }
         }
 
         _ports = _portContainer.GetChildren().Cast<ServerPort>().ToArray();
@@ -127,9 +132,9 @@ public class Server : Node2D
 
         foreach(var (state, i) in coreStates.Select((val, i) => (val, i))) {
             if (state.Item1 <= 0.0f) {
-                _coresLabel.Text += $"Core {i}: idle\n";
+                _coresLabel.Text += $"CORE {i}: IDLE\n";
             } else {
-                _coresLabel.Text += $"Core {i}: {((state.Item1 / state.Item2) * 100).ToString("0")}%\n";
+                _coresLabel.Text += $"CORE {i}: {((state.Item1 / state.Item2) * 100).ToString("0")}%\n";
             }
         }
     }
