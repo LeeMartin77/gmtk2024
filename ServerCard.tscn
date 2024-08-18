@@ -1,0 +1,131 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://assets/theme/GUI-theme.tres" type="Theme" id=1]
+[ext_resource path="res://assets/graphics/CardBackground.svg" type="Texture" id=2]
+[ext_resource path="res://assets/fonts/TitleText.tres" type="DynamicFont" id=3]
+[ext_resource path="res://assets/fonts/SubTitleText.tres" type="DynamicFont" id=4]
+[ext_resource path="res://assets/graphics/Core.png" type="Texture" id=5]
+[ext_resource path="res://assets/port.png" type="Texture" id=6]
+
+[node name="Card" type="MarginContainer"]
+margin_right = 368.0
+margin_bottom = 91.0
+size_flags_horizontal = 3
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+margin_right = 368.0
+margin_bottom = 192.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 2 )
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+margin_right = 368.0
+margin_bottom = 192.0
+size_flags_horizontal = 3
+custom_constants/margin_right = 16
+custom_constants/margin_top = 20
+custom_constants/margin_left = 16
+custom_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+margin_left = 16.0
+margin_top = 20.0
+margin_right = 352.0
+margin_bottom = 172.0
+custom_constants/separation = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+margin_right = 336.0
+margin_bottom = 48.0
+custom_constants/separation = 8
+
+[node name="NameOfServer" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+margin_top = 13.0
+margin_right = 178.0
+margin_bottom = 35.0
+size_flags_horizontal = 3
+theme = ExtResource( 1 )
+text = "Server Name"
+
+[node name="BuyButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+margin_left = 186.0
+margin_right = 336.0
+margin_bottom = 48.0
+theme = ExtResource( 1 )
+text = "BUY £0,000"
+
+[node name="Cost" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+margin_top = 68.0
+margin_right = 336.0
+margin_bottom = 90.0
+
+[node name="DailyCostLabel" type="Label" parent="MarginContainer/VBoxContainer/Cost"]
+margin_top = 2.0
+margin_right = 132.0
+margin_bottom = 20.0
+theme = ExtResource( 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "DAILY COST:"
+
+[node name="DailyCostValue" type="Label" parent="MarginContainer/VBoxContainer/Cost"]
+margin_left = 136.0
+margin_right = 336.0
+margin_bottom = 22.0
+size_flags_horizontal = 3
+theme = ExtResource( 1 )
+custom_fonts/font = ExtResource( 3 )
+text = "£0.00"
+align = 2
+
+[node name="Daily" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+margin_top = 110.0
+margin_right = 336.0
+margin_bottom = 152.0
+custom_constants/separation = 24
+
+[node name="Ports" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Daily"]
+margin_right = 156.0
+margin_bottom = 42.0
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="PortIcon" type="TextureRect" parent="MarginContainer/VBoxContainer/Daily/Ports"]
+margin_left = 39.0
+margin_right = 85.0
+margin_bottom = 42.0
+texture = ExtResource( 6 )
+
+[node name="PortValue" type="Label" parent="MarginContainer/VBoxContainer/Daily/Ports"]
+margin_left = 89.0
+margin_top = 10.0
+margin_right = 117.0
+margin_bottom = 32.0
+theme = ExtResource( 1 )
+text = "x1"
+
+[node name="Cores" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Daily"]
+margin_left = 180.0
+margin_right = 336.0
+margin_bottom = 42.0
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="CoreIcon" type="TextureRect" parent="MarginContainer/VBoxContainer/Daily/Cores"]
+margin_left = 41.0
+margin_right = 82.0
+margin_bottom = 42.0
+theme = ExtResource( 1 )
+texture = ExtResource( 5 )
+
+[node name="CoreValue" type="Label" parent="MarginContainer/VBoxContainer/Daily/Cores"]
+margin_left = 86.0
+margin_top = 10.0
+margin_right = 114.0
+margin_bottom = 32.0
+theme = ExtResource( 1 )
+text = "x1"
