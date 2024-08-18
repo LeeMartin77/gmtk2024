@@ -74,8 +74,6 @@ public class Server : Node2D
 
         _ports = _portContainer.GetChildren().Cast<ServerPort>().ToArray();
 
-        GD.Print(_ports.Length);
-
         var initialStates = new List<(double, double)>();
         var numcores = NumberOfCores;
         while (numcores > 0) {

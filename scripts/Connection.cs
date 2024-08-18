@@ -80,13 +80,6 @@ public class Connection : Node2D
         _cable.AddChild(_finalJoint);
         pinJoint.NodeB = pinJoint.GetPathTo(_finalJoint);
 
-        foreach(var chld in _cable.GetChildren()) {
-            if (chld.GetType() == typeof(PinJoint2D)) {
-                GD.Print((chld as PinJoint2D).NodeA);
-                GD.Print((chld as PinJoint2D).NodeB);
-            }
-        }
-
         await ToSignal(GetTree().CreateTimer(0.1f), "timeout");
         try {
 		    _contract = _game.Contracts.GetContractById(ContractId);
