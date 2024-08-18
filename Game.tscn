@@ -74,6 +74,10 @@ script = ExtResource( 10 )
 
 [node name="Game" type="Node2D" parent="."]
 
+[node name="Camera2D" type="Camera2D" parent="Game"]
+anchor_mode = 0
+current = true
+
 [node name="Backdrop" type="Node2D" parent="Game"]
 
 [node name="Top" type="Node2D" parent="Game/Backdrop"]

@@ -27,10 +27,13 @@ public class Game : Node2D
 
 	public Firewall Firewall;
 
+	private Camera2D _camera;
+
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
 		// Get Contracts
+    	_camera = GetNode<Camera2D>("/root/Root/Game/Camera2D");
     	Rack = GetNode<Rack>("/root/Root/Game/Rack");
 		Contracts = GetNode<Contracts>("/root/Root/UI/Contracts");
 		Firewall = GetNode<Firewall>("/root/Root/Game/Firewall");
@@ -66,6 +69,38 @@ public class Game : Node2D
 			Account += IncomePerTick;
 			Account -= ExpensesPerTick;
 			TickNumber += 1;
+		}
+	}
+
+	private float _scrollSpeed = 10f;
+	public override void _Input(InputEvent inputEvent)
+    {
+		if (inputEvent.GetType() == typeof(InputEventPanGesture)) {
+			var dlta = (inputEvent as InputEventPanGesture).Delta;
+			_scrollBy((dlta.y * -1) * _scrollSpeed);
+		}
+		if (inputEvent.IsActionPressed("scroll_up"))
+		{
+			GD.Print("scroll_up occurred!");
+			_scrollBy(-1 * _scrollSpeed);
+		} else if (inputEvent.IsActionPressed("scroll_down")) {
+
+			GD.Print("scroll_down occurred!");
+			_scrollBy(+1 * _scrollSpeed);
+		}
+    }
+
+	private float _cameraLimit = 1200f;
+	private void _scrollBy(float amount) {
+		GD.Print(amount);
+		if (_camera.Position.y > 0 && amount < 0) {
+			var newpos = _camera.Position;
+			newpos.y = Math.Max(0, newpos.y + amount);
+			_camera.Position = newpos;
+		} else if (_camera.Position.y < _cameraLimit && amount > 0) {
+			var newpos = _camera.Position;
+			newpos.y = Math.Min(_cameraLimit, newpos.y + amount);
+			_camera.Position = newpos;
 		}
 	}
 }

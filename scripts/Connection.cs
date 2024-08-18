@@ -26,7 +26,7 @@ public class Connection : Node2D
 
     private Destination _destination;
 
-    private int _cableLength = 20;
+    private int _cableLength = 45;
     private Node2D _cable;
 
     private RigidBody2D _finalJoint;
