@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 public struct ServerCreationArgs {
+	public string Name;
 	public float Cost;
 	public float ExpensesPerTick;
 	public float WorkPerTick;
@@ -44,7 +45,7 @@ public class Server : Node2D
 
 	private PackedScene _portScene;
 
-    private Rack _rack;
+	private Rack _rack;
 
 	private Node2D _portContainer;
 
@@ -53,7 +54,7 @@ public class Server : Node2D
 		_coresLabel = GetNode<Label>("Cores/Label");
 		_infoLabel = GetNode<Label>("Info/Label");
 
-        _rack = GetParent<Rack>();
+		_rack = GetParent<Rack>();
 
 		_portScene = GD.Load<PackedScene>("res://ServerPort.tscn");
 
@@ -93,9 +94,9 @@ public class Server : Node2D
 		pending = new Stack<Packet>();
 	}
 
-    public void _on_Retire_Server() {
-        _rack.RemoveServer(this);
-    }
+	public void _on_Retire_Server() {
+		_rack.RemoveServer(this);
+	}
 
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(float delta)
