@@ -38,3 +38,12 @@ margin_bottom = 10.0
 theme = ExtResource( 3 )
 text = "RATE: 10RPM
 COST: £1203"
+
+[node name="Button" type="Button" parent="Info"]
+margin_left = 181.0
+margin_top = 81.0
+margin_right = 231.0
+margin_bottom = 101.0
+text = "Retire"
+
+[connection signal="button_up" from="Info/Button" to="." method="_on_Retire_Server"]

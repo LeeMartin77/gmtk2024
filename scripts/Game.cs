@@ -47,7 +47,7 @@ public class Game : Node2D
 	}
 
 	public void BuyServer(ServerCreationArgs sca) {
-		if (Account >= sca.Cost) {
+		if (Account >= sca.Cost && Rack.HasSpace()) {
 			Account -= sca.Cost;
 			Rack.AddServer(sca);
 		}
@@ -81,18 +81,15 @@ public class Game : Node2D
 		}
 		if (inputEvent.IsActionPressed("scroll_up"))
 		{
-			GD.Print("scroll_up occurred!");
 			_scrollBy(-1 * _scrollSpeed);
 		} else if (inputEvent.IsActionPressed("scroll_down")) {
 
-			GD.Print("scroll_down occurred!");
 			_scrollBy(+1 * _scrollSpeed);
 		}
 	}
 
 	private float _cameraLimit = 1200f;
 	private void _scrollBy(float amount) {
-		GD.Print(amount);
 		if (_camera.Position.y > 0 && amount < 0) {
 			var newpos = _camera.Position;
 			newpos.y = Math.Max(0, newpos.y + amount);
