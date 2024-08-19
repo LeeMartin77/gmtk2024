@@ -104,6 +104,7 @@ public class Connection : Node2D
 		var pktpos = _source.Position;
 		pktpos.y += 10;
 		packet.Position = pktpos;
+        packet.Contract = _contract;
 		_packetsIn.AddChild(packet);
 	}
 	

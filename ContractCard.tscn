@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://assets/theme/GUI-theme.tres" type="Theme" id=1]
 [ext_resource path="res://assets/graphics/CardBackground.svg" type="Texture" id=2]
+[ext_resource path="res://scripts/Contract.cs" type="Script" id=3]
 [ext_resource path="res://assets/fonts/SubTitleText.tres" type="DynamicFont" id=4]
 [ext_resource path="res://assets/fonts/BodyText.tres" type="DynamicFont" id=5]
 
@@ -9,6 +10,7 @@
 margin_right = 368.0
 margin_bottom = 91.0
 size_flags_horizontal = 3
+script = ExtResource( 3 )
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 margin_right = 368.0
@@ -179,9 +181,11 @@ custom_fonts/font = ExtResource( 4 )
 text = "000"
 align = 2
 
-[node name="TakeContractButton" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="ContractButton" type="Button" parent="MarginContainer/VBoxContainer"]
 margin_top = 207.0
 margin_right = 336.0
 margin_bottom = 255.0
 theme = ExtResource( 1 )
 text = "TAKE CONTRACT"
+
+[connection signal="button_up" from="MarginContainer/VBoxContainer/ContractButton" to="." method="_on_Button_Release"]

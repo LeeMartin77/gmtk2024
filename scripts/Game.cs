@@ -35,7 +35,8 @@ public class Game : Node2D
 		// Get Contracts
 		_camera = GetNode<Camera2D>("/root/Root/Game/Camera2D");
 		Rack = GetNode<Rack>("/root/Root/Game/Rack");
-		Contracts = GetNode<Contracts>("/root/Root/UI/Contracts");
+		// for note of observers - this is horrific, don't do this ever
+		Contracts = GetNode<Contracts>("/root/Root/Game/Camera2D/GUI/MarginContainer/Menu/TabContainer/CONTRACTS/contents/ActiveContracts");
 		Firewall = GetNode<Firewall>("/root/Root/Game/Firewall");
 	}
 
@@ -70,6 +71,11 @@ public class Game : Node2D
 			Account -= ExpensesPerTick;
 			TickNumber += 1;
 		}
+	}
+
+	public void AdjustMoney(float amount) {
+		Account += amount;
+		// TODO: Logic for good/bad
 	}
 
 	private float _scrollSpeed = 10f;

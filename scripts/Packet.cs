@@ -23,6 +23,8 @@ public class Packet : RigidBody2D
     public Node2D Destination;
     public Node2D Source;
 
+    public Contract Contract;
+
     private List<Node2D> _joints;
     private int _jointIndex = 0;
     private int _jointLength;
@@ -59,7 +61,12 @@ public class Packet : RigidBody2D
             Processable = true;
         }
 
+        if (Contract == null) {
+            QueueFree();
+        }
+
         if (TimeoutTicks <= 0) {
+            Contract.FailPacket();
             QueueFree();
         }
 

@@ -2,7 +2,7 @@ using Godot;
 using System;
 using System.Linq;
 
-public class Contracts : VFlowContainer
+public class Contracts : VBoxContainer
 {
 	// Declare member variables here. Examples:
 	// private int a = 2;
@@ -13,7 +13,7 @@ public class Contracts : VFlowContainer
 
 	public override void _Ready()
 	{
-		_contractScene = GD.Load<PackedScene>("res://Contract.tscn");
+		_contractScene = GD.Load<PackedScene>("res://ContractCard.tscn");
 	}
 
 	public Contract[] GetContracts() {
