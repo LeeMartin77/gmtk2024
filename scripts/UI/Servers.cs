@@ -46,7 +46,7 @@ public class Servers : Node
 			ExpensesPerTick = 20,
 			WorkPerTick =  1.6f,
 			NumberOfCores = 4,
-			NumberOfPorts = 2,
+			NumberOfPorts = 3,
 			AvailableAtMoneyMade = 500,
 			UnavailableAtMoneyMade = 3000,
 		},
@@ -68,7 +68,7 @@ public class Servers : Node
 			ExpensesPerTick = 150,
 			WorkPerTick =  1.8f,
 			NumberOfCores = 6,
-			NumberOfPorts = 2,
+			NumberOfPorts = 3,
 			AvailableAtMoneyMade = 2000,
 			UnavailableAtMoneyMade = 20000,
 		},
@@ -90,7 +90,7 @@ public class Servers : Node
 			ExpensesPerTick = 1000,
 			WorkPerTick =  2.2f,
 			NumberOfCores = 6,
-			NumberOfPorts = 2,
+			NumberOfPorts = 3,
 			AvailableAtMoneyMade = 10000,
 			UnavailableAtMoneyMade = 100000,
 		},
@@ -144,7 +144,7 @@ public class Servers : Node
 				chld.QueueFree();
 			}
 			foreach(ServerCreationArgs serverCreationArgs in _allServers) {
-				if (serverCreationArgs.AvailableAtMoneyMade <= _game.MoneyMade && serverCreationArgs.UnavailableAtMoneyMade >= _game.MoneyMade) {
+				if (serverCreationArgs.AvailableAtMoneyMade <= _game.MoneyMade / 10 && serverCreationArgs.UnavailableAtMoneyMade >= _game.MoneyMade / 10) {
 					var instance = _containerTemplate.Instance<ServerCard>();
 					instance.CreationArgs = serverCreationArgs;
 					_serversContainer.AddChild(instance);
