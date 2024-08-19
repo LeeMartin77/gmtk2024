@@ -11,7 +11,7 @@ public class Servers : Node
 		new ServerCreationArgs(){
 			Name = "Test",
 			Cost = 100,
-			ExpensesPerTick = 1,
+			ExpensesPerTick = 100,
 			WorkPerTick =  0.4f,
 			NumberOfCores = 1,
 			NumberOfPorts = 1,

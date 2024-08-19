@@ -19,7 +19,12 @@ public class Game : Node2D
 	public float ExpensesPerTick = 0.0f;
 
   	[Export]
-	public float Account = 10_000.0f;
+	public float Account = 100.0f;
+
+	[Export]
+	public float GameOverAmount = -1_000f;
+
+	public bool GameOver = false;
 
 	public float MoneyMade = 0.0f;
 	public int RequestsHandled = 0;
@@ -32,11 +37,14 @@ public class Game : Node2D
 
 	private Camera2D _camera;
 
+	private Panel _gameOverPanel;
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		// Get Contracts
 		_camera = GetNode<Camera2D>("/root/Root/Game/Camera2D");
+		_gameOverPanel = GetNode<Panel>("/root/Root/Game/Camera2D/GameOverPanel");
 		Rack = GetNode<Rack>("/root/Root/Game/Rack");
 		// for note of observers - this is horrific, don't do this ever
 		Contracts = GetNode<Contracts>("/root/Root/Game/Camera2D/GUI/MarginContainer/Menu/TabContainer/CONTRACTS/contents/ActiveContracts");
@@ -60,6 +68,9 @@ public class Game : Node2D
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(float delta)
 	{
+		if (GameOver) {
+			return;
+		}
 		_timeSinceLastTick += delta;
 		if (_timeSinceLastTick > TickRateSeconds) {
 			// total up servers and contracts
@@ -77,13 +88,24 @@ public class Game : Node2D
 	}
 
 	public void AdjustMoney(float amount) {
+		if (GameOver) {
+			return;
+		}
 		Account += amount;
 		if (amount > 0){
 			MoneyMade += amount;
 		}
+		if (Account <= GameOverAmount) {
+			// Game is over!
+			GameOver = true;
+			_gameOverPanel.Visible = true;
+		}
 	}
 
 	public void AddPackets(int packetcount) {
+		if (GameOver) {
+			return;
+		}
 		RequestsHandled += packetcount;
 	}
 
