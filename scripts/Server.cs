@@ -112,9 +112,8 @@ public class Server : Node2D
 		foreach(var (state, i) in coreStates.Select((val, i) => (val, i))) {
 			if (state.Item1 <= 0.0f) {
 				// core is available to work
-					Packet pkt;
-					while (pending.Count > 0){
-						pkt = pending.Pop();
+					if (pending.Count > 0){
+						Packet pkt = pending.Pop();
 						try {
 							if (pkt != null && !pkt.IsQueuedForDeletion()) {
 								coreStates[i] = (pkt.Work, pkt.Work);
@@ -136,6 +135,7 @@ public class Server : Node2D
 				if (overlap.GetType()  == typeof(Packet)) {
 					if ((overlap as Packet).Processable && (overlap as Packet).WorkRate <= 0.0f){
 						pending.Push(overlap as Packet);
+						(overlap as Packet).Processable = false;
 					}
 				} else if (overlap != port.ConnectedTo && overlap.GetType()  == typeof(Destination) && !(overlap as Destination).AttachedToMouse) {
 					// "eject"
