@@ -112,12 +112,19 @@ public class Server : Node2D
 		foreach(var (state, i) in coreStates.Select((val, i) => (val, i))) {
 			if (state.Item1 <= 0.0f) {
 				// core is available to work
-				if (pending.Count > 0) {
-
-					var pkt = pending.Pop();
-					coreStates[i] = (pkt.Work, pkt.Work);
-					pkt.WorkRate = WorkPerTick;
-				}
+					Packet pkt;
+					while (pending.Count > 0){
+						pkt = pending.Pop();
+						try {
+							if (pkt != null && !pkt.IsQueuedForDeletion()) {
+								coreStates[i] = (pkt.Work, pkt.Work);
+								pkt.WorkRate = WorkPerTick;
+								break;
+							}
+						} catch(System.ObjectDisposedException ex) {
+							GD.Print(ex);
+						}
+					}
 			}
 		}
 
