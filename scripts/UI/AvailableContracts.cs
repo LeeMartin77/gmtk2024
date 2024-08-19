@@ -19,16 +19,15 @@ public class AvailableContracts : VBoxContainer
 {1, new string[]{"Sunrise",
 	"GreenLeaf",
 	"TechHaven",
-	"Bloom Florists",
+	"Bloom",
 	"Crafty",
-	"Urban Café",
-	"Pixel Design",
-	"Healthy Market",
+	"Ubn Café",
+	"Pixel",
 	"Book Nook",
-	"Spoon Bakery",}},
+	"Spn Bakery",}},
 		{2, new string[]{"NexGen",
-	"BrightPath",
-	"Visionary",
+	"Bright",
+	"Vision",
 	"Pinnacle",
 	"Quantum",
 	"Innovative",
@@ -48,9 +47,9 @@ public class AvailableContracts : VBoxContainer
 	"Northern"}},
 		{4, new string[]{  "OmniCorp",
 	"GlobalTech",
-	"NovaSynthesis",
+	"NovaSyn",
 	"Titanium",
-	"QuantumSphere",
+	"Quantum Inc",
 	"Eclipse",
 	"Imperial",
 	"Hyperion",
@@ -59,13 +58,9 @@ public class AvailableContracts : VBoxContainer
 	};
 
 	private string[] _things = new string[]{ "Website",
-	"Database",
 	"API",
-	"Microservice",
 	"Cache",
-	"Application",
 	"Backup",
-	"Repository",
 	"Queue",
 	"Proxy"};
 
@@ -142,7 +137,7 @@ public class AvailableContracts : VBoxContainer
 	public override void _Process(float delta)
 	{
 		if (_game.TickNumber != _lastTick && _game.TickNumber % 10 == 0) {
-			_contractScale *= 1.05f;
+			_contractScale *= 1.005f;
 			_contractTier = Math.Max(Math.Min((int)_game.RequestsHandled / 100, 4), 1);
 			_createValidServerOptions();
 			_lastTick = _game.TickNumber;

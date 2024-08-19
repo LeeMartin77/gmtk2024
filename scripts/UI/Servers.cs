@@ -12,7 +12,7 @@ public class Servers : Node
 			Name = "HELL X1",
 			Cost = 100,
 			ExpensesPerTick = 10,
-			WorkPerTick =  0.4f,
+			WorkPerTick =  1f,
 			NumberOfCores = 1,
 			NumberOfPorts = 1,
 			AvailableAtMoneyMade = 0,
@@ -24,30 +24,30 @@ public class Servers : Node
 			Name = "HELL X100",
 			Cost = 100,
 			ExpensesPerTick = 10,
-			WorkPerTick =  0.4f,
+			WorkPerTick =  1.2f,
 			NumberOfCores = 2,
 			NumberOfPorts = 2,
-			AvailableAtMoneyMade = 100,
+			AvailableAtMoneyMade = 300,
 			UnavailableAtMoneyMade = 1000,
 		},
 		new ServerCreationArgs(){
 			Name = "HELL X200",
 			Cost = 200,
 			ExpensesPerTick = 15,
-			WorkPerTick =  0.8f,
+			WorkPerTick =  1.4f,
 			NumberOfCores = 4,
 			NumberOfPorts = 2,
-			AvailableAtMoneyMade = 200,
+			AvailableAtMoneyMade = 400,
 			UnavailableAtMoneyMade = 2000,
 		},
 		new ServerCreationArgs(){
 			Name = "HELL X300",
 			Cost = 300,
 			ExpensesPerTick = 20,
-			WorkPerTick =  1.2f,
+			WorkPerTick =  1.6f,
 			NumberOfCores = 4,
 			NumberOfPorts = 2,
-			AvailableAtMoneyMade = 300,
+			AvailableAtMoneyMade = 500,
 			UnavailableAtMoneyMade = 3000,
 		},
 
@@ -56,7 +56,7 @@ public class Servers : Node
 			Name = "TSUJIFU Z100",
 			Cost = 1000,
 			ExpensesPerTick = 100,
-			WorkPerTick =  0.8f,
+			WorkPerTick =  1.4f,
 			NumberOfCores = 4,
 			NumberOfPorts = 2,
 			AvailableAtMoneyMade = 1000,
@@ -66,7 +66,7 @@ public class Servers : Node
 			Name = "TSUJIFU Z200",
 			Cost = 2000,
 			ExpensesPerTick = 150,
-			WorkPerTick =  1.6f,
+			WorkPerTick =  1.8f,
 			NumberOfCores = 6,
 			NumberOfPorts = 2,
 			AvailableAtMoneyMade = 2000,
@@ -88,7 +88,7 @@ public class Servers : Node
 			Name = "COSCI L100",
 			Cost = 10000,
 			ExpensesPerTick = 1000,
-			WorkPerTick =  2f,
+			WorkPerTick =  2.2f,
 			NumberOfCores = 6,
 			NumberOfPorts = 2,
 			AvailableAtMoneyMade = 10000,
@@ -144,7 +144,7 @@ public class Servers : Node
 				chld.QueueFree();
 			}
 			foreach(ServerCreationArgs serverCreationArgs in _allServers) {
-				if (serverCreationArgs.AvailableAtMoneyMade < _game.MoneyMade && serverCreationArgs.UnavailableAtMoneyMade > _game.MoneyMade) {
+				if (serverCreationArgs.AvailableAtMoneyMade <= _game.MoneyMade && serverCreationArgs.UnavailableAtMoneyMade >= _game.MoneyMade) {
 					var instance = _containerTemplate.Instance<ServerCard>();
 					instance.CreationArgs = serverCreationArgs;
 					_serversContainer.AddChild(instance);

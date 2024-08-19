@@ -118,7 +118,7 @@ scroll_horizontal_enabled = false
 
 [node name="contents" type="VBoxContainer" parent="MarginContainer/Menu/TabContainer/CONTRACTS"]
 margin_right = 368.0
-margin_bottom = 367.0
+margin_bottom = 303.0
 size_flags_horizontal = 3
 custom_constants/separation = 12
 
@@ -135,18 +135,18 @@ uppercase = true
 [node name="ActiveContracts" type="VBoxContainer" parent="MarginContainer/Menu/TabContainer/CONTRACTS/contents"]
 margin_top = 30.0
 margin_right = 368.0
-margin_bottom = 325.0
+margin_bottom = 261.0
 script = ExtResource( 8 )
 
 [node name="Card" parent="MarginContainer/Menu/TabContainer/CONTRACTS/contents/ActiveContracts" instance=ExtResource( 9 )]
-margin_bottom = 295.0
+margin_bottom = 231.0
 IncomePerTick = 15.0
 ContractId = "contract1"
 
 [node name="AvaliableContractsHeading" type="Label" parent="MarginContainer/Menu/TabContainer/CONTRACTS/contents"]
-margin_top = 337.0
+margin_top = 273.0
 margin_right = 368.0
-margin_bottom = 355.0
+margin_bottom = 291.0
 theme = SubResource( 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = ExtResource( 4 )
@@ -155,9 +155,9 @@ align = 1
 uppercase = true
 
 [node name="Available" type="VBoxContainer" parent="MarginContainer/Menu/TabContainer/CONTRACTS/contents"]
-margin_top = 367.0
+margin_top = 303.0
 margin_right = 368.0
-margin_bottom = 367.0
+margin_bottom = 303.0
 script = ExtResource( 10 )
 
 [node name="SERVERS" type="ScrollContainer" parent="MarginContainer/Menu/TabContainer"]
