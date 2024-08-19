@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/MenuBackground.svg-6ab9755669973a62d589109949c31701.stex"
+path="res://.import/rocket_launch.png-0513b2725525b64f13f1e3b7f51a8cd1.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/graphics/MenuBackground.svg"
-dest_files=[ "res://.import/MenuBackground.svg-6ab9755669973a62d589109949c31701.stex" ]
+source_file="res://assets/graphics/rocket_launch.png"
+dest_files=[ "res://.import/rocket_launch.png-0513b2725525b64f13f1e3b7f51a8cd1.stex" ]
 
 [params]
 

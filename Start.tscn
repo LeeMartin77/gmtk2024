@@ -1,8 +1,15 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://assets/graphics/Start.png" type="Texture" id=1]
 [ext_resource path="res://StartScreen.cs" type="Script" id=2]
 [ext_resource path="res://assets/theme/GUI-theme.tres" type="Theme" id=3]
+[ext_resource path="res://assets/fonts/VCR_OSD_MONO_1.001.tres" type="DynamicFontData" id=4]
+[ext_resource path="res://assets/graphics/rocket_launch.png" type="Texture" id=5]
+[ext_resource path="res://assets/graphics/psychology_alt.png" type="Texture" id=6]
+
+[sub_resource type="DynamicFont" id=1]
+size = 40
+font_data = ExtResource( 4 )
 
 [node name="Start" type="Node2D"]
 script = ExtResource( 2 )
@@ -14,12 +21,91 @@ anchor_mode = 0
 texture = ExtResource( 1 )
 centered = false
 
-[node name="Button" type="Button" parent="."]
-margin_left = 473.0
-margin_top = 463.0
-margin_right = 708.0
-margin_bottom = 545.0
+[node name="Title" type="Label" parent="."]
+margin_left = 323.0
+margin_top = 182.0
+margin_right = 783.0
+margin_bottom = 218.0
 theme = ExtResource( 3 )
-text = "START"
+custom_colors/font_color = Color( 0.313726, 0.168627, 0.470588, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "My First Data-Centre"
+uppercase = true
 
-[connection signal="button_up" from="Button" to="." method="_on_Button_button_up"]
+[node name="Menu" type="PanelContainer" parent="."]
+margin_left = 201.0
+margin_top = 392.0
+margin_right = 1047.0
+margin_bottom = 612.0
+theme = ExtResource( 3 )
+
+[node name="MarginContainer" type="MarginContainer" parent="Menu"]
+margin_right = 846.0
+margin_bottom = 220.0
+custom_constants/margin_right = 32
+custom_constants/margin_top = 32
+custom_constants/margin_left = 32
+custom_constants/margin_bottom = 32
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Menu/MarginContainer"]
+margin_left = 32.0
+margin_top = 32.0
+margin_right = 814.0
+margin_bottom = 188.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 32
+
+[node name="Buttons" type="VBoxContainer" parent="Menu/MarginContainer/HBoxContainer"]
+margin_right = 375.0
+margin_bottom = 156.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 16
+alignment = 1
+
+[node name="StartButton" type="Button" parent="Menu/MarginContainer/HBoxContainer/Buttons"]
+margin_top = 22.0
+margin_right = 375.0
+margin_bottom = 70.0
+size_flags_horizontal = 3
+theme = ExtResource( 3 )
+text = "JUMP IN  "
+
+[node name="Icon" type="TextureRect" parent="Menu/MarginContainer/HBoxContainer/Buttons/StartButton"]
+margin_left = 229.0
+margin_top = 13.0
+margin_right = 254.0
+margin_bottom = 37.0
+texture = ExtResource( 5 )
+
+[node name="HowToPlay" type="Button" parent="Menu/MarginContainer/HBoxContainer/Buttons"]
+margin_top = 86.0
+margin_right = 375.0
+margin_bottom = 134.0
+size_flags_horizontal = 3
+theme = ExtResource( 3 )
+text = "HOW TO PLAY  "
+
+[node name="Icon" type="TextureRect" parent="Menu/MarginContainer/HBoxContainer/Buttons/HowToPlay"]
+margin_left = 253.0
+margin_top = 12.0
+margin_right = 278.0
+margin_bottom = 36.0
+texture = ExtResource( 6 )
+
+[node name="Blurb" type="VBoxContainer" parent="Menu/MarginContainer/HBoxContainer"]
+margin_left = 407.0
+margin_right = 782.0
+margin_bottom = 156.0
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Label" type="Label" parent="Menu/MarginContainer/HBoxContainer/Blurb"]
+margin_top = 29.0
+margin_right = 375.0
+margin_bottom = 126.0
+text = "You know computers, right? There's a rack is in the corner,  go scale it up and  make us some money."
+autowrap = true
+
+[connection signal="button_up" from="Menu/MarginContainer/HBoxContainer/Buttons/StartButton" to="." method="_on_Button_button_up"]
