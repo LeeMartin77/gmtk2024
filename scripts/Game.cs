@@ -115,14 +115,14 @@ public class Game : Node2D
 	private float _scrollSpeed = 10f;
 	public override void _Input(InputEvent inputEvent)
 	{
-		if (inputEvent.GetType() == typeof(InputEventPanGesture)) {
+		if (inputEvent.GetType() == typeof(InputEventPanGesture) && (inputEvent as InputEventPanGesture).Position.x > 400) {
 			var dlta = (inputEvent as InputEventPanGesture).Delta;
 			_scrollBy((dlta.y * -1) * _scrollSpeed);
 		}
-		if (inputEvent.IsActionPressed("scroll_up"))
+		if (inputEvent.IsActionPressed("scroll_up") && GetViewport().GetMousePosition().x > 400)
 		{
 			_scrollBy(-1 * _scrollSpeed);
-		} else if (inputEvent.IsActionPressed("scroll_down")) {
+		} else if (inputEvent.IsActionPressed("scroll_down") && GetViewport().GetMousePosition().x > 400) {
 
 			_scrollBy(+1 * _scrollSpeed);
 		}
