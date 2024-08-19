@@ -13,7 +13,7 @@ public class Packet : RigidBody2D
     public double TimeoutTicks = 20.0f;
 
     [Export]
-    public double Work = 3.0f;
+    public double Work = 2.0f;
 
     public float MovementSpeed = 650.0f;
 
