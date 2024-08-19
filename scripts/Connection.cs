@@ -40,6 +40,14 @@ public class Connection : Node2D
 		_source = GetNode<Area2D>("Source");
 		_destination = GetNode<Destination>("Destination");
 		_cable = GetNode<Node2D>("Cable");
+
+		var randomColor = new Color{
+			r = (float)new Random().NextDouble(),
+			g = (float)new Random().NextDouble(),
+			b = (float)new Random().NextDouble(),
+			a = 1
+		};
+		_destination.GetNode<Sprite>("Connector").Modulate = randomColor;
 		// first one gets extreme weight to "lock" it in place + gravity turned off;
 
 		var offset = 31.5f;
@@ -54,6 +62,7 @@ public class Connection : Node2D
 		// offset
 		for(var i = 0; i < _cableLength; i++) {
 			var joint = _cableLinkScene.Instance<RigidBody2D>();
+			joint.GetNode<Sprite>("Cablelink").Modulate = randomColor;
 			joint.Weight = 10.0f;
 			joint.Mass = 10.0f;
 

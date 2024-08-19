@@ -9,6 +9,8 @@ public class Firewall : Node2D
     // private string b = "text";
 
     // Called when the node enters the scene tree for the first time.
+    private double _offsetArea = 15f;
+
     private PackedScene _connectionScene;
     public override void _Ready()
     {
@@ -29,6 +31,10 @@ public class Firewall : Node2D
         var nc = _connectionScene.Instance() as Connection;
         nc.ContractId = args.ContractId;
         AddChild(nc);
+        var pos = nc.Position;
+        pos.x += (float)(new Random().NextDouble() * (_offsetArea - -_offsetArea) + -_offsetArea);
+        pos.y += (float)(new Random().NextDouble() * (_offsetArea - -_offsetArea) + -_offsetArea);
+        nc.Position = pos;
     }
 
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.
