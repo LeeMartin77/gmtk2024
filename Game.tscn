@@ -70,8 +70,10 @@ position = Vector2( 850, 350 )
 script = ExtResource( 8 )
 
 [node name="Server" parent="Game/Rack" instance=ExtResource( 4 )]
-NumberOfCores = 12
-NumberOfPorts = 6
+ExpensesPerTick = 10.0
+WorkPerTick = 1.0
+NumberOfCores = 1
+NumberOfPorts = 1
 
 [node name="Firewall" type="Node2D" parent="Game"]
 position = Vector2( 0, -30 )
