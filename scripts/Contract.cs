@@ -47,6 +47,7 @@ public class Contract : Control
 	public int MaxLostPackets = 50;
 
 	private Connection _connection;
+	public Color Color = new Color{r=0,g=0,b=0,a=1};
 	private Game _game;
 	private int _lastTick;
 
@@ -119,6 +120,7 @@ public class Contract : Control
 		_labels["DailyRequests"].Text = $"{DayTime.ToDailyRequests(PacketsPerTick):#,##0}";
 
 
+		_contractButton.Modulate = Color;
 	}
 
 	public void ReceivePacket() {

@@ -47,6 +47,7 @@ public class Connection : Node2D
 			b = (float)new Random().NextDouble(),
 			a = 1
 		};
+		
 		_destination.GetNode<Sprite>("Connector").Modulate = randomColor;
 		// first one gets extreme weight to "lock" it in place + gravity turned off;
 
@@ -92,6 +93,7 @@ public class Connection : Node2D
 		await ToSignal(GetTree().CreateTimer(0.1f), "timeout");
 		try {
 			_contract = _game.Contracts.GetContractById(ContractId);
+			_contract.Color = randomColor;
 		} catch {
 			GD.Print("Contract doesn't exist!");
 			QueueFree();
