@@ -9,7 +9,7 @@ public class Servers : Node
 	private VBoxContainer _serversContainer;
 	private List<ServerCreationArgs> _allServers = new List<ServerCreationArgs>(){
 		new ServerCreationArgs(){
-			Name = "HELL OPTIPLEX X1",
+			Name = "HELL X1",
 			Cost = 100,
 			ExpensesPerTick = 10,
 			WorkPerTick =  0.4f,
@@ -53,7 +53,7 @@ public class Servers : Node
 
 		// 1_000 - Tsujifu
 		new ServerCreationArgs(){
-			Name = "TSUJIFU Z1000",
+			Name = "TSUJIFU Z100",
 			Cost = 1000,
 			ExpensesPerTick = 100,
 			WorkPerTick =  0.8f,
@@ -63,7 +63,7 @@ public class Servers : Node
 			UnavailableAtMoneyMade = 10000,
 		},
 		new ServerCreationArgs(){
-			Name = "TSUJIFU Z2000",
+			Name = "TSUJIFU Z200",
 			Cost = 2000,
 			ExpensesPerTick = 150,
 			WorkPerTick =  1.6f,
@@ -73,7 +73,7 @@ public class Servers : Node
 			UnavailableAtMoneyMade = 20000,
 		},
 		new ServerCreationArgs(){
-			Name = "TSUJIFU Z3000",
+			Name = "TSUJIFU Z300",
 			Cost = 3000,
 			ExpensesPerTick = 200,
 			WorkPerTick =  2f,
@@ -85,7 +85,7 @@ public class Servers : Node
 
 		// 10_000
 		new ServerCreationArgs(){
-			Name = "COSCI L10000",
+			Name = "COSCI L100",
 			Cost = 10000,
 			ExpensesPerTick = 1000,
 			WorkPerTick =  2f,
@@ -95,7 +95,7 @@ public class Servers : Node
 			UnavailableAtMoneyMade = 100000,
 		},
 		new ServerCreationArgs(){
-			Name = "COSCI L20000",
+			Name = "COSCI L200",
 			Cost = 20000,
 			ExpensesPerTick = 1500,
 			WorkPerTick =  3f,
@@ -105,7 +105,7 @@ public class Servers : Node
 			UnavailableAtMoneyMade = 200000,
 		},
 		new ServerCreationArgs(){
-			Name = "COSCI L30000",
+			Name = "COSCI L300",
 			Cost = 30000,
 			ExpensesPerTick = 2000,
 			WorkPerTick =  4f,
@@ -116,7 +116,7 @@ public class Servers : Node
 		},
 
 		new ServerCreationArgs(){
-			Name = "MBI FAR RED 9000",
+			Name = "MBI FAR RED",
 			Cost = 1_000_000,
 			ExpensesPerTick = 100_000,
 			WorkPerTick =  20f,
