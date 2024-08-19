@@ -17,6 +17,6 @@ public class Money : Control
 	public override void _Process(float delta)
 	{
 		_balance.Text = $"BLN: £{_game.Account:#,##0}";
-		_delta.Text = $"{(_game.LastDelta > 0 ? "+" : "-")}£{_game.LastDelta:#,##0}";
+		_delta.Text = $"£{_game.LastDelta:#,##0}";
 	}
 }
