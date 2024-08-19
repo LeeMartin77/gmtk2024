@@ -73,14 +73,14 @@ public class Contract : Control
 		
 		_labels["ContractName"].Text = ContractName;
 		_labels["RequestsLost"].Text = $"{FailedPackets}/{MaxLostPackets}";
-		_labels["DailyPay"].Text = $"{DayTime.ToDailyMoney(IncomePerTick)}";
-		_labels["DailyRequests"].Text = $"{DayTime.ToDailyRequests(PacketsPerTick)}";
+		_labels["DailyPay"].Text = $"{DayTime.ToDailyMoney(IncomePerTick):#,##0}";
+		_labels["DailyRequests"].Text = $"{DayTime.ToDailyRequests(PacketsPerTick):#,##0}";
 
 		_contractButton = GetNode<Button>("MarginContainer/VBoxContainer/ContractButton");
 
 
 
-		_contractButton.Text = $"END CONTRACT (£{-ContractLeavingFee})";
+		_contractButton.Text = $"END CONTRACT (£{-ContractLeavingFee:#,##0})";
 		await ToSignal(GetTree().CreateTimer(0.1f), "timeout");
 		try {
 			_connection = GetNode<Firewall>("/root/Root/Game/Firewall").GetConnectionByContractId(ContractId);
@@ -105,7 +105,7 @@ public class Contract : Control
 			if (_game.TickNumber > 0 && _game.TickNumber % 10 == 0) {
 				ContractLeavingFee *= 0.95f;
 				PacketsPerTick *= 1.1f;
-				_contractButton.Text = $"END CONTRACT (£{-ContractLeavingFee})";
+				_contractButton.Text = $"END CONTRACT (£{-ContractLeavingFee:#,##0})";
 			}
 		}
 
@@ -116,7 +116,7 @@ public class Contract : Control
 
 		// requests lost
 		_labels["RequestsLost"].Text = $"{FailedPackets}/{MaxLostPackets}";
-		_labels["DailyRequests"].Text = $"{DayTime.ToDailyRequests(PacketsPerTick)}";
+		_labels["DailyRequests"].Text = $"{DayTime.ToDailyRequests(PacketsPerTick):#,##0}";
 
 
 	}

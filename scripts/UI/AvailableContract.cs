@@ -28,11 +28,11 @@ public class AvailableContract : Control
 		};
 		_contractButton = GetNode<Button>("MarginContainer/VBoxContainer/ContractButton");
 		
-		_contractButton.Text = $"TAKE CONTRACT (£{+Args.ContractSigningPay})";
+		_contractButton.Text = $"TAKE CONTRACT (£{+Args.ContractSigningPay:#,##0})";
 		_labels["ContractName"].Text = Args.ContractName;
 		_labels["AllowableLost"].Text = $"{Args.MaxLostPackets}";
-		_labels["DailyPay"].Text = $"{DayTime.ToDailyMoney(Args.IncomePerTick)}";
-		_labels["DailyRequests"].Text = $"{DayTime.ToDailyRequests(Args.PacketsPerTick)}";
+		_labels["DailyPay"].Text = $"{DayTime.ToDailyMoney(Args.IncomePerTick):#,##0}";
+		_labels["DailyRequests"].Text = $"{DayTime.ToDailyRequests(Args.PacketsPerTick):#,##0}";
 
 	}
 

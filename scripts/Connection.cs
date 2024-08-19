@@ -90,7 +90,7 @@ public class Connection : Node2D
 	}
 
 	public void _on_Source_body_entered(Node potentialPacket) {
-		if (potentialPacket.GetType()  == typeof(Packet)) {
+		if (potentialPacket != null && potentialPacket.GetType()  == typeof(Packet)) {
 			if ((potentialPacket as Packet).Work <= 0.0f) {
 				potentialPacket.QueueFree();
 				_contract.ReceivePacket();

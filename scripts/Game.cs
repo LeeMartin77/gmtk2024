@@ -21,6 +21,8 @@ public class Game : Node2D
   	[Export]
 	public float Account = 100.0f;
 
+	public float LastDelta = 0.0f;
+
 	[Export]
 	public float GameOverAmount = -1_000f;
 
@@ -83,6 +85,7 @@ public class Game : Node2D
 			_timeSinceLastTick -= TickRateSeconds;
 			AdjustMoney(IncomePerTick);
 			AdjustMoney(-ExpensesPerTick);
+			LastDelta = IncomePerTick - ExpensesPerTick;
 			TickNumber += 1;
 		}
 	}

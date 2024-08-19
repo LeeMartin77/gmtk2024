@@ -79,17 +79,17 @@ size_flags_horizontal = 3
 custom_constants/separation = 4
 script = ExtResource( 5 )
 
-[node name="balance-label" type="Label" parent="MarginContainer/Menu/Heading/Money"]
+[node name="balance" type="Label" parent="MarginContainer/Menu/Heading/Money"]
 margin_right = 210.0
 margin_bottom = 22.0
 theme = ExtResource( 2 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = ExtResource( 3 )
-text = "Balance"
+text = "BLN: £0.00"
 align = 2
 uppercase = true
 
-[node name="balance-value" type="Label" parent="MarginContainer/Menu/Heading/Money"]
+[node name="delta" type="Label" parent="MarginContainer/Menu/Heading/Money"]
 margin_top = 26.0
 margin_right = 210.0
 margin_bottom = 48.0
