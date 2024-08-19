@@ -18,6 +18,6 @@ public class MoneyMade : Label
     //  // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(float delta)
     {
-        Text = $"{_game.MoneyMade} MONEY MADE";
+        Text = $"£{_game.MoneyMade:#,###,##0} MADE\n";
     }
 }
