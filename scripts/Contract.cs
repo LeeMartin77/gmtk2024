@@ -67,13 +67,12 @@ public class Contract : Control
 		_labels = new Dictionary<string, Label>{
 			{"ContractName", GetNode<Label>("MarginContainer/VBoxContainer/HBoxContainer/NameOfContract")},
 			{"RequestsLost", GetNode<Label>("MarginContainer/VBoxContainer/ActiveContractMetrics/RequestsLost/RequestsLostValue")},
-			{"AllowableLost", GetNode<Label>("MarginContainer/VBoxContainer/AvailableContractMetrics/AllowableLoss/AllowableLossValue")},
 			{"DailyPay", GetNode<Label>("MarginContainer/VBoxContainer/Daily/DailyPay/DailyPayValue")},
 			{"DailyRequests", GetNode<Label>("MarginContainer/VBoxContainer/Daily/DailyRequests/DailyRequestsValue")},
 		};
 		
 		_labels["ContractName"].Text = ContractName;
-		_labels["AllowableLost"].Text = $"{MaxLostPackets}";
+		_labels["RequestsLost"].Text = $"{FailedPackets}/{MaxLostPackets}";
 		_labels["DailyPay"].Text = $"{DayTime.ToDailyMoney(IncomePerTick)}";
 		_labels["DailyRequests"].Text = $"{DayTime.ToDailyRequests(PacketsPerTick)}";
 
@@ -116,7 +115,7 @@ public class Contract : Control
 		}
 
 		// requests lost
-		_labels["RequestsLost"].Text = $"{FailedPackets}";
+		_labels["RequestsLost"].Text = $"{FailedPackets}/{MaxLostPackets}";
 		_labels["DailyRequests"].Text = $"{DayTime.ToDailyRequests(PacketsPerTick)}";
 
 

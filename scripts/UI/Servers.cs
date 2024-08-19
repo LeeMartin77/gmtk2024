@@ -11,7 +11,7 @@ public class Servers : Node
 		new ServerCreationArgs(){
 			Name = "HELL OPTIPLEX X1",
 			Cost = 100,
-			ExpensesPerTick = 100,
+			ExpensesPerTick = 10,
 			WorkPerTick =  0.4f,
 			NumberOfCores = 1,
 			NumberOfPorts = 1,
@@ -23,7 +23,7 @@ public class Servers : Node
 		new ServerCreationArgs(){
 			Name = "HELL X100",
 			Cost = 100,
-			ExpensesPerTick = 100,
+			ExpensesPerTick = 10,
 			WorkPerTick =  0.4f,
 			NumberOfCores = 2,
 			NumberOfPorts = 2,
@@ -33,7 +33,7 @@ public class Servers : Node
 		new ServerCreationArgs(){
 			Name = "HELL X200",
 			Cost = 200,
-			ExpensesPerTick = 150,
+			ExpensesPerTick = 15,
 			WorkPerTick =  0.8f,
 			NumberOfCores = 4,
 			NumberOfPorts = 2,
@@ -43,7 +43,7 @@ public class Servers : Node
 		new ServerCreationArgs(){
 			Name = "HELL X300",
 			Cost = 300,
-			ExpensesPerTick = 200,
+			ExpensesPerTick = 20,
 			WorkPerTick =  1.2f,
 			NumberOfCores = 4,
 			NumberOfPorts = 2,
@@ -55,7 +55,7 @@ public class Servers : Node
 		new ServerCreationArgs(){
 			Name = "TSUJIFU Z1000",
 			Cost = 1000,
-			ExpensesPerTick = 1000,
+			ExpensesPerTick = 100,
 			WorkPerTick =  0.8f,
 			NumberOfCores = 4,
 			NumberOfPorts = 2,
@@ -65,7 +65,7 @@ public class Servers : Node
 		new ServerCreationArgs(){
 			Name = "TSUJIFU Z2000",
 			Cost = 2000,
-			ExpensesPerTick = 1500,
+			ExpensesPerTick = 150,
 			WorkPerTick =  1.6f,
 			NumberOfCores = 6,
 			NumberOfPorts = 2,
@@ -75,7 +75,7 @@ public class Servers : Node
 		new ServerCreationArgs(){
 			Name = "TSUJIFU Z3000",
 			Cost = 3000,
-			ExpensesPerTick = 2000,
+			ExpensesPerTick = 200,
 			WorkPerTick =  2f,
 			NumberOfCores = 6,
 			NumberOfPorts = 4,
@@ -87,7 +87,7 @@ public class Servers : Node
 		new ServerCreationArgs(){
 			Name = "COSCI L10000",
 			Cost = 10000,
-			ExpensesPerTick = 10000,
+			ExpensesPerTick = 1000,
 			WorkPerTick =  2f,
 			NumberOfCores = 6,
 			NumberOfPorts = 2,
@@ -97,7 +97,7 @@ public class Servers : Node
 		new ServerCreationArgs(){
 			Name = "COSCI L20000",
 			Cost = 20000,
-			ExpensesPerTick = 15000,
+			ExpensesPerTick = 1500,
 			WorkPerTick =  3f,
 			NumberOfCores = 8,
 			NumberOfPorts = 4,
@@ -107,7 +107,7 @@ public class Servers : Node
 		new ServerCreationArgs(){
 			Name = "COSCI L30000",
 			Cost = 30000,
-			ExpensesPerTick = 20000,
+			ExpensesPerTick = 2000,
 			WorkPerTick =  4f,
 			NumberOfCores = 10,
 			NumberOfPorts = 6,
