@@ -17,10 +17,8 @@ public class Rack : Node2D
     {
         _serverScene = GD.Load<PackedScene>("res://Server.tscn");
         var initialServer = GetNode<Server>("Server");
-        _serverRack = new Server[10]{
+        _serverRack = new Server[8]{
             initialServer, 
-            null,
-            null,
             null,
             null,
             null,

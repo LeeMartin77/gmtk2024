@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://assets/theme/GUI-theme.tres" type="Theme" id=1]
 [ext_resource path="res://assets/graphics/CardBackground.svg" type="Texture" id=2]
@@ -6,11 +6,13 @@
 [ext_resource path="res://assets/fonts/SubTitleText.tres" type="DynamicFont" id=4]
 [ext_resource path="res://assets/graphics/Core.png" type="Texture" id=5]
 [ext_resource path="res://assets/port.png" type="Texture" id=6]
+[ext_resource path="res://scripts/UI/ServerCard.cs" type="Script" id=7]
 
 [node name="Card" type="MarginContainer"]
 margin_right = 368.0
 margin_bottom = 91.0
 size_flags_horizontal = 3
+script = ExtResource( 7 )
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 margin_right = 368.0
@@ -129,3 +131,5 @@ margin_right = 114.0
 margin_bottom = 32.0
 theme = ExtResource( 1 )
 text = "x1"
+
+[connection signal="button_up" from="MarginContainer/VBoxContainer/HBoxContainer/BuyButton" to="." method="_on_Button_Release"]

@@ -26,7 +26,8 @@ public class Servers : Node
 		PackedScene containerTemplate = GD.Load<PackedScene>("res://ServerCard.tscn");
 		
 		foreach(ServerCreationArgs serverCreationArgs in _allServers) {
-			var instance = containerTemplate.Instance();
+			var instance = containerTemplate.Instance<ServerCard>();
+			instance.CreationArgs = serverCreationArgs;
 			_serversContainer.AddChild(instance);
 		}
 	}
