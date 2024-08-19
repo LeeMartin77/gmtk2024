@@ -137,7 +137,7 @@ public class AvailableContracts : VBoxContainer
 	public override void _Process(float delta)
 	{
 		if (_game.TickNumber != _lastTick && _game.TickNumber % 10 == 0) {
-			_contractScale *= 1.005f;
+			_contractScale *= 1.02f;
 			_contractTier = Math.Max(Math.Min((int)_game.RequestsHandled / 100, 4), 1);
 			_createValidServerOptions();
 			_lastTick = _game.TickNumber;
