@@ -105,7 +105,72 @@ alignment = 1
 margin_top = 29.0
 margin_right = 375.0
 margin_bottom = 126.0
-text = "You know computers, right? There's a rack is in the corner,  go scale it up and  make us some money."
+text = "You know computers, right? There's a rack in the corner,  go scale it up and  make us some money."
 autowrap = true
 
+[node name="HowToPlay" type="PanelContainer" parent="."]
+margin_left = 276.0
+margin_top = 47.0
+margin_right = 962.0
+margin_bottom = 665.0
+theme = ExtResource( 3 )
+
+[node name="MarginContainer" type="MarginContainer" parent="HowToPlay"]
+margin_right = 686.0
+margin_bottom = 618.0
+custom_constants/margin_right = 32
+custom_constants/margin_top = 32
+custom_constants/margin_left = 32
+custom_constants/margin_bottom = 32
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HowToPlay/MarginContainer"]
+margin_left = 32.0
+margin_top = 32.0
+margin_right = 654.0
+margin_bottom = 586.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 32
+
+[node name="Buttons" type="VBoxContainer" parent="HowToPlay/MarginContainer/HBoxContainer"]
+margin_right = 622.0
+margin_bottom = 554.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 16
+alignment = 1
+
+[node name="Label" type="Label" parent="HowToPlay/MarginContainer/HBoxContainer/Buttons"]
+margin_top = 34.0
+margin_right = 622.0
+margin_bottom = 456.0
+text = "Goal: 
+    Grow your rack of servers,
+    to handle more contracts, 
+    without running out of money.
+
+- The bank will shut you down if you go 
+  into £1,000 of debt
+
+- Available contracts will be worth more 
+  later in the game
+
+- The number of requests from accepted
+  contracts will increase over time
+
+- You will be fined if you fail to
+  resolve enough requests on a contract
+"
+autowrap = true
+
+[node name="Dismiss" type="Button" parent="HowToPlay/MarginContainer/HBoxContainer/Buttons"]
+margin_top = 472.0
+margin_right = 622.0
+margin_bottom = 520.0
+size_flags_horizontal = 3
+theme = ExtResource( 3 )
+text = "CLOSE"
+
 [connection signal="button_up" from="Menu/MarginContainer/HBoxContainer/Buttons/StartButton" to="." method="_on_Button_button_up"]
+[connection signal="button_up" from="Menu/MarginContainer/HBoxContainer/Buttons/HowToPlay" to="." method="_on_HowToPlay_button_up"]
+[connection signal="button_up" from="HowToPlay/MarginContainer/HBoxContainer/Buttons/Dismiss" to="." method="_on_Dismiss_button_up"]

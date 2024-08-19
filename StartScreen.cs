@@ -11,4 +11,13 @@ public class StartScreen : Node2D
 		
 	  GetTree().ChangeScene("res://Game.tscn");
 	}
+
+    public void _on_HowToPlay_button_up() {
+        GetNode<Control>("HowToPlay").Visible = true;
+    }
+
+
+    public void _on_Dismiss_button_up() {
+        GetNode<Control>("HowToPlay").Visible = false;
+    }
 }
