@@ -141,10 +141,17 @@ public class Server : Node2D
 
 		foreach(var (state, i) in coreStates.Select((val, i) => (val, i))) {
 			if (state.Item1 <= 0.0f) {
-				_coresLabel.Text += $"CORE {i}: IDLE\n";
+				_coresLabel.Text += $"C{i:D2}: IDLE";
 			} else {
-				_coresLabel.Text += $"CORE {i}: {((state.Item1 / state.Item2) * 100).ToString("0")}%\n";
+				_coresLabel.Text += $"C{i:D2}: {((state.Item1 / state.Item2) * 100).ToString("000")}%";
 			}
+            if (i > 0 && i % 2 == 0) {
+                _coresLabel.Text += " ";
+            } else if (i > 0) {
+                _coresLabel.Text += "\n";
+            } else {
+                _coresLabel.Text += " ";
+            }
 		}
 	}
 }

@@ -29,14 +29,19 @@ public class ServerCard : MarginContainer
 			{"DailyCost", GetNode<Label>("MarginContainer/VBoxContainer/Cost/DailyCostValue")},
 			{"PortValue", GetNode<Label>("MarginContainer/VBoxContainer/Daily/Ports/PortValue")},
 			{"CoreValue", GetNode<Label>("MarginContainer/VBoxContainer/Daily/Cores/CoreValue")},
+            {"RPMValue", GetNode<Label>("MarginContainer/VBoxContainer/Daily/RPM")},
 		};
 
         _button = GetNode<Button>("MarginContainer/VBoxContainer/HBoxContainer/BuyButton");
         _button.Text = $"BUY £{CreationArgs.Cost}";
 
+        
+
         _labels["DailyCost"].Text = $"{CreationArgs.ExpensesPerTick}";
         _labels["PortValue"].Text = $"x{CreationArgs.NumberOfPorts}";
         _labels["CoreValue"].Text = $"x{CreationArgs.NumberOfCores}";
+        _labels["RPMValue"].Text = $"{CreationArgs.WorkPerTick*60} RPM";
+
 		
     }
 

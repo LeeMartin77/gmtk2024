@@ -70,6 +70,7 @@ position = Vector2( 850, 350 )
 script = ExtResource( 8 )
 
 [node name="Server" parent="Game/Rack" instance=ExtResource( 4 )]
+NumberOfCores = 12
 NumberOfPorts = 6
 
 [node name="Firewall" type="Node2D" parent="Game"]

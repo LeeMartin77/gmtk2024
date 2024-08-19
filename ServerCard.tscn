@@ -85,49 +85,58 @@ text = "£0.00"
 align = 2
 
 [node name="Daily" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+margin_left = 10.0
 margin_top = 110.0
 margin_right = 336.0
 margin_bottom = 152.0
 custom_constants/separation = 24
 
-[node name="Ports" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Daily"]
-margin_right = 156.0
-margin_bottom = 42.0
-size_flags_horizontal = 3
-alignment = 1
-
-[node name="PortIcon" type="TextureRect" parent="MarginContainer/VBoxContainer/Daily/Ports"]
-margin_left = 39.0
-margin_right = 85.0
-margin_bottom = 42.0
-texture = ExtResource( 6 )
-
-[node name="PortValue" type="Label" parent="MarginContainer/VBoxContainer/Daily/Ports"]
-margin_left = 89.0
+[node name="RPM" type="Label" parent="MarginContainer/VBoxContainer/Daily"]
 margin_top = 10.0
-margin_right = 117.0
+margin_right = 70.0
 margin_bottom = 32.0
 theme = ExtResource( 1 )
-text = "x1"
+text = "1 RPM"
 
 [node name="Cores" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Daily"]
-margin_left = 180.0
-margin_right = 336.0
+margin_left = 94.0
+margin_right = 198.0
 margin_bottom = 42.0
 size_flags_horizontal = 3
 alignment = 1
 
 [node name="CoreIcon" type="TextureRect" parent="MarginContainer/VBoxContainer/Daily/Cores"]
-margin_left = 41.0
-margin_right = 82.0
+margin_left = 15.0
+margin_right = 56.0
 margin_bottom = 42.0
 theme = ExtResource( 1 )
 texture = ExtResource( 5 )
 
 [node name="CoreValue" type="Label" parent="MarginContainer/VBoxContainer/Daily/Cores"]
-margin_left = 86.0
+margin_left = 60.0
 margin_top = 10.0
-margin_right = 114.0
+margin_right = 88.0
+margin_bottom = 32.0
+theme = ExtResource( 1 )
+text = "x1"
+
+[node name="Ports" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Daily"]
+margin_left = 222.0
+margin_right = 326.0
+margin_bottom = 42.0
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="PortIcon" type="TextureRect" parent="MarginContainer/VBoxContainer/Daily/Ports"]
+margin_left = 13.0
+margin_right = 59.0
+margin_bottom = 42.0
+texture = ExtResource( 6 )
+
+[node name="PortValue" type="Label" parent="MarginContainer/VBoxContainer/Daily/Ports"]
+margin_left = 63.0
+margin_top = 10.0
+margin_right = 91.0
 margin_bottom = 32.0
 theme = ExtResource( 1 )
 text = "x1"
