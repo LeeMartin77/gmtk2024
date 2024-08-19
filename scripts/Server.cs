@@ -145,13 +145,13 @@ public class Server : Node2D
 			} else {
 				_coresLabel.Text += $"C{i:D2}: {((state.Item1 / state.Item2) * 100).ToString("000")}%";
 			}
-            if (i > 0 && i % 2 == 0) {
-                _coresLabel.Text += " ";
-            } else if (i > 0) {
-                _coresLabel.Text += "\n";
-            } else {
-                _coresLabel.Text += " ";
-            }
+			if (i > 0 && i % 2 == 0) {
+				_coresLabel.Text += " ";
+			} else if (i > 0) {
+				_coresLabel.Text += "\n";
+			} else {
+				_coresLabel.Text += " ";
+			}
 		}
 	}
 }
