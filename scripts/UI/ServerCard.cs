@@ -30,6 +30,7 @@ public class ServerCard : MarginContainer
 			{"PortValue", GetNode<Label>("MarginContainer/VBoxContainer/Daily/Ports/PortValue")},
 			{"CoreValue", GetNode<Label>("MarginContainer/VBoxContainer/Daily/Cores/CoreValue")},
             {"RPMValue", GetNode<Label>("MarginContainer/VBoxContainer/Daily/RPM")},
+            {"ServerName", GetNode<Label>("MarginContainer/VBoxContainer/HBoxContainer/NameOfServer")},
 		};
 
         _button = GetNode<Button>("MarginContainer/VBoxContainer/HBoxContainer/BuyButton");
@@ -41,6 +42,7 @@ public class ServerCard : MarginContainer
         _labels["PortValue"].Text = $"x{CreationArgs.NumberOfPorts}";
         _labels["CoreValue"].Text = $"x{CreationArgs.NumberOfCores}";
         _labels["RPMValue"].Text = $"{CreationArgs.WorkPerTick*60} RPM";
+        _labels["ServerName"].Text = $"{CreationArgs.Name}";
 
 		
     }

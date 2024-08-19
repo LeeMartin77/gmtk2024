@@ -140,6 +140,7 @@ script = ExtResource( 8 )
 
 [node name="Card" parent="MarginContainer/Menu/TabContainer/CONTRACTS/contents/ActiveContracts" instance=ExtResource( 9 )]
 margin_bottom = 295.0
+IncomePerTick = 15.0
 ContractId = "contract1"
 
 [node name="AvaliableContractsHeading" type="Label" parent="MarginContainer/Menu/TabContainer/CONTRACTS/contents"]

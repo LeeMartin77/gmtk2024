@@ -10,6 +10,8 @@ public struct ServerCreationArgs {
 	public float WorkPerTick;
 	public int NumberOfCores;
 	public int NumberOfPorts;
+    public float AvailableAtMoneyMade;
+    public float UnavailableAtMoneyMade;
 }
 
 public class Server : Node2D
