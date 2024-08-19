@@ -74,8 +74,8 @@ public class Contract : Control
 		
 		_labels["ContractName"].Text = ContractName;
 		_labels["AllowableLost"].Text = $"{MaxLostPackets}";
-		_labels["DailyPay"].Text = $"{IncomePerTick}";
-		_labels["DailyRequests"].Text = $"{PacketsPerTick}";
+		_labels["DailyPay"].Text = $"{DayTime.ToDailyMoney(IncomePerTick)}";
+		_labels["DailyRequests"].Text = $"{DayTime.ToDailyRequests(PacketsPerTick)}";
 
 		_contractButton = GetNode<Button>("MarginContainer/VBoxContainer/ContractButton");
 
@@ -117,7 +117,7 @@ public class Contract : Control
 
 		// requests lost
 		_labels["RequestsLost"].Text = $"{FailedPackets}";
-		_labels["DailyRequests"].Text = $"{PacketsPerTick}";
+		_labels["DailyRequests"].Text = $"{DayTime.ToDailyRequests(PacketsPerTick)}";
 
 
 	}

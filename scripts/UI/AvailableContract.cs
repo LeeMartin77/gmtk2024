@@ -31,8 +31,8 @@ public class AvailableContract : Control
 		_contractButton.Text = $"TAKE CONTRACT (£{+Args.ContractSigningPay})";
 		_labels["ContractName"].Text = Args.ContractName;
 		_labels["AllowableLost"].Text = $"{Args.MaxLostPackets}";
-		_labels["DailyPay"].Text = $"{Args.IncomePerTick}";
-		_labels["DailyRequests"].Text = $"{Args.PacketsPerTick}";
+		_labels["DailyPay"].Text = $"{DayTime.ToDailyMoney(Args.IncomePerTick)}";
+		_labels["DailyRequests"].Text = $"{DayTime.ToDailyRequests(Args.PacketsPerTick)}";
 
 	}
 

@@ -58,7 +58,7 @@ public class Server : Node2D
 
 		_portScene = GD.Load<PackedScene>("res://ServerPort.tscn");
 
-		_infoLabel.Text = $"CORE: {NumberOfCores}\nRATE: {WorkPerTick*60}RPM\nCOST: £{ExpensesPerTick*60}PM";
+		_infoLabel.Text = $"CORE: {NumberOfCores}\nRATE: {WorkPerTick*60}RPM\nCOST: £{DayTime.ToDailyMoney(ExpensesPerTick)}PD";
 
 		_game = GetNode<Game>("/root/Root");
 
