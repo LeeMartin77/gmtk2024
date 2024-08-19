@@ -1,35 +1,40 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
-public class AvailableContracts : ItemList
+public class AvailableContracts : VBoxContainer
 {
-    // Declare member variables here. Examples:
-    // private int a = 2;
-    // private string b = "text";
+	// Declare member variables here. Examples:
+	// private int a = 2;
+	// private string b = "text";
 
-    // Called when the node enters the scene tree for the first time.
-    private Game _game;
-    public override void _Ready()
-    {
-        
-        _game = GetNode<Game>("/root/Root");
-    }
+	// Called when the node enters the scene tree for the first time.
+	private Game _game;
 
-    public void _on_AvailableContracts_item_activated(int index) {
-        //var item = GetItemText(index);
-        var cca = new ContractCreationArgs{
-			IncomePerTick = 10.0f,
-			PacketsPerTick = 0.4f,
-			PacketTimeoutTime = 20f,
+
+	private List<ContractCreationArgs> _allContracts = new List<ContractCreationArgs>(){
+		new ContractCreationArgs(){
+			ContractName = "Test",
 			ContractId = Guid.NewGuid().ToString(),
-		};
-
-        _game.AcceptContract(cca);
-    }
-
-//  // Called every frame. 'delta' is the elapsed time since the previous frame.
-//  public override void _Process(float delta)
-//  {
-//      
-//  }
+			IncomePerTick = 1,
+			PacketsPerTick =  0.4f,
+			ContractSigningPay = 1000,
+			ContractLeavingFee = 1200,
+			ContractFlatFailureFee = 200,
+			MaxLostPackets = 10,
+		}	
+	};
+	
+	public override void _Ready()
+	{
+		
+		_game = GetNode<Game>("/root/Root");
+		PackedScene containerTemplate = GD.Load<PackedScene>("res://AvailableContractCard.tscn");
+		
+		foreach(ContractCreationArgs cca in _allContracts) {
+			var instance = containerTemplate.Instance<AvailableContract>();
+			instance.Args = cca;
+			AddChild(instance);
+		}
+	}
 }

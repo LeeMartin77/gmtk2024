@@ -21,6 +21,9 @@ public class Game : Node2D
   	[Export]
 	public float Account = 10_000.0f;
 
+	public float MoneyMade = 0.0f;
+	public int RequestsHandled = 0;
+
 	public Rack Rack;
 
 	public Contracts Contracts;
@@ -67,15 +70,21 @@ public class Game : Node2D
 				return acc + nxt.IncomePerTick;
 			});
 			_timeSinceLastTick -= TickRateSeconds;
-			Account += IncomePerTick;
-			Account -= ExpensesPerTick;
+			AdjustMoney(IncomePerTick);
+			AdjustMoney(-ExpensesPerTick);
 			TickNumber += 1;
 		}
 	}
 
 	public void AdjustMoney(float amount) {
 		Account += amount;
-		// TODO: Logic for good/bad
+		if (amount > 0){
+			MoneyMade += amount;
+		}
+	}
+
+	public void AddPackets(int packetcount) {
+		RequestsHandled += packetcount;
 	}
 
 	private float _scrollSpeed = 10f;

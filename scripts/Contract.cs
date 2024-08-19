@@ -3,15 +3,14 @@ using System;
 using System.Collections.Generic;
 
 public struct ContractCreationArgs {
+	public string ContractId;
+	public string ContractName;
 	public float IncomePerTick;
 	public float PacketsPerTick;
-	public float PacketTimeoutTime;
-	public string ContractName;
 	public float ContractSigningPay;
 	public float ContractLeavingFee;
 	public float ContractFlatFailureFee;
 	public int MaxLostPackets;
-	public string ContractId;
 }
 
 public class Contract : Control
@@ -30,7 +29,6 @@ public class Contract : Control
 	// TODO: We need this to be non-flat rates in the future
 	public float PacketsPerTick = 0.2f;
 
-	[Export]
 	public float PacketTimeoutTime = 20f;
 
 	[Export]
@@ -47,9 +45,6 @@ public class Contract : Control
 	public float ContractFlatFailureFee = 10.0f;
 	[Export]
 	public int MaxLostPackets = 50;
-
-	[Export]
-	public bool Active = false;
 
 	private Connection _connection;
 	private Game _game;
@@ -86,24 +81,19 @@ public class Contract : Control
 
 
 
-		if (Active) {
-			_contractButton.Text = $"END CONTRACT (£{-ContractLeavingFee})";
-			await ToSignal(GetTree().CreateTimer(0.1f), "timeout");
-			try {
-				_connection = GetNode<Firewall>("/root/Root/Game/Firewall").GetConnectionByContractId(ContractId);
-			} catch {
-				GD.Print("Connection doesn't exist!");
-				QueueFree();
-			}
+		_contractButton.Text = $"END CONTRACT (£{-ContractLeavingFee})";
+		await ToSignal(GetTree().CreateTimer(0.1f), "timeout");
+		try {
+			_connection = GetNode<Firewall>("/root/Root/Game/Firewall").GetConnectionByContractId(ContractId);
+		} catch {
+			GD.Print("Connection doesn't exist!");
+			QueueFree();
 		}
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(float delta)
 	{
-		if (!Active) {
-			return;
-		}
 		if (_lastTick != _game.TickNumber) {
 			_lastTick = _game.TickNumber;
 			_pendingPackets += PacketsPerTick;
@@ -113,7 +103,7 @@ public class Contract : Control
 				_connection.CreatePacket(PacketTimeoutTime);
 			}
 
-			if (Active && _game.TickNumber > 0 && _game.TickNumber % 10 == 0) {
+			if (_game.TickNumber > 0 && _game.TickNumber % 10 == 0) {
 				ContractLeavingFee *= 0.95f;
 				PacketsPerTick *= 1.1f;
 				_contractButton.Text = $"END CONTRACT (£{-ContractLeavingFee})";
@@ -134,6 +124,7 @@ public class Contract : Control
 
 	public void ReceivePacket() {
 		ReceivedPackets += 1;
+		_game.AddPackets(1);
 	}
 
 	public void FailPacket() {
@@ -141,11 +132,7 @@ public class Contract : Control
 	}
 
 	public void _on_Button_Release() {
-		if (Active) {
-			EndContract();
-		} else {
-			// TODO: Trigger add contract
-		}
+		EndContract();
 	}
 
 	public void EndContract() {

@@ -10,9 +10,11 @@ public class Contracts : VBoxContainer
 
 	// Called when the node enters the scene tree for the first time.
 	private PackedScene _contractScene;
+	private Game _game;
 
 	public override void _Ready()
 	{
+		_game = GetNode<Game>("/root/Root");
 		_contractScene = GD.Load<PackedScene>("res://ContractCard.tscn");
 	}
 
@@ -28,10 +30,17 @@ public class Contracts : VBoxContainer
 
 	public void AddContract(ContractCreationArgs args) {
 		var nc = _contractScene.Instance() as Contract;
+		_game.AdjustMoney(args.ContractSigningPay);
+		nc.ContractId = args.ContractId;
+		nc.ContractName = args.ContractName;
+
 		nc.IncomePerTick = args.IncomePerTick;
 		nc.PacketsPerTick = args.PacketsPerTick;
-		nc.PacketTimeoutTime = args.PacketTimeoutTime;
-		nc.ContractId = args.ContractId;
+
+		nc.ContractSigningPay = args.ContractSigningPay;
+		nc.ContractLeavingFee = args.ContractLeavingFee;
+		nc.ContractFlatFailureFee = args.ContractFlatFailureFee;
+		nc.MaxLostPackets = args.MaxLostPackets;
 		AddChild(nc);
 	}
 

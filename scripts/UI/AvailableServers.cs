@@ -14,16 +14,6 @@ public class AvailableServers : ItemList
 		
 		_game = GetNode<Game>("/root/Root");
 	}
-
-	public void _on_AvailableServers_item_activated(int index) {
-		_game.BuyServer(new ServerCreationArgs{
-			Cost = 1000.0f,
-			ExpensesPerTick = 9.0f,
-			WorkPerTick = 0.4f,
-			NumberOfCores = 2,
-			NumberOfPorts = 2,
-		});
-	}
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.
 //  public override void _Process(float delta)
 //  {
